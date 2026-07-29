@@ -50,3 +50,15 @@ mwcc_debugger.py
 build.py
 *.lnk
 tools/vc6
+
+# Msys2
+msys2/
+
+# Linux build files
+.fontconfig_cache/
+
+# Downloaded tools
+dtk-tools/
+
+# Subprojects
+subprojects/libPorpoise/
