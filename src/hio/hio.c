@@ -1,7 +1,7 @@
-#include "Dolphin/hio.h"
-#include "Dolphin/exi.h"
-#include "Dolphin/hw_regs.h"
-#include "Dolphin/os.h"
+#include "dolphin/hio.h"
+#include "dolphin/exi.h"
+#include "dolphin/hw_regs.h"
+#include "dolphin/os.h"
 #include <stddef.h>
 
 static s32 Chan = -1;

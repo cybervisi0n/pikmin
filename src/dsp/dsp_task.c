@@ -1,4 +1,4 @@
-#include "Dolphin/dsp.h"
+#include "dolphin/dsp.h"
 #include <stdlib.h>
 
 DSPTaskInfo* __DSP_curr_task;

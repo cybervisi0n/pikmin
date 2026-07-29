@@ -1,7 +1,7 @@
 #include "Texture.h"
 
 #include "DebugLog.h"
-#include "Dolphin/gx.h"
+#include "dolphin/gx.h"
 #include "Graphics.h"
 #include "Stream.h"
 #include "sysNew.h"
