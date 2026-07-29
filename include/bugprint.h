@@ -35,7 +35,7 @@ void bugPrint(immut char* fmt, ...);
 
 // DO NOT define this as a variadic macro (when matching).
 // See the comment in "DebugLog.h" regarding `PRINT` and `ERROR` for the reason why.
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 #define BUGPRINT bugPrint
 #else
 #define BUGPRINT

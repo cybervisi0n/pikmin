@@ -1,1 +1,2 @@
 option('build_target', type: 'combo', choices: ['gc', 'win64', 'linux'], value: 'gc', description: 'Target build platform', yield: true)
+option('pikmin_win32', type: 'boolean', value: false, description: 'Build the pikmin win32 version that was originally shipped on the disc')

@@ -2773,7 +2773,7 @@ void NaviAttackState::init(Navi* navi)
 	_18                                                     = 0.0f;
 	_14                                                     = 0.0f;
 	seSystem->playPlayerSe(SE_PLAYER_PUNCH);
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 	if (AIPerf::moveType != 0) {
 		f32 faceDir     = navi->mFaceDirection;
 		navi->mVelocity = navi->mVelocity + Vector3f(sinf(faceDir), 500.0f, cosf(faceDir));

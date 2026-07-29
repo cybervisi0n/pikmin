@@ -165,7 +165,7 @@ void TekiPersonality::write(RandomAccessStream& output)
 	PRINT_NAKATA("TekiPersonality::write<\n");
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void TekiPersonality::genAge(AgeServer& server)
 {

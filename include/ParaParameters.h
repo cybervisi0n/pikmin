@@ -156,7 +156,7 @@ public:
 	virtual void write(Stream&); // _0C
 	virtual void print();        // _10
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&) { }
 #endif
 };

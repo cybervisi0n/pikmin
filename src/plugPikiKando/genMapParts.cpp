@@ -24,7 +24,7 @@ int numShapes = 5;
 
 static char* shapeNames[] = { "box", "1", "2", "3", "log" };
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 int numParts             = 4;
 static char* partNames[] = { "mapparts/cone.mod", "mapparts/cylinder.mod", "mapparts/cube.mod", "mapparts/board.mod" };
 
@@ -196,7 +196,7 @@ Creature* GenObjectMapParts::birth(BirthInfo& info)
 	return nullptr;
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 void GenObjectMapParts::doGenAge(AgeServer& server)
 {
 	int i;

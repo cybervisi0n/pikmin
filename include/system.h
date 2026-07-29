@@ -5,9 +5,9 @@
 #include "Controller.h"
 #include "CoreNode.h"
 #include "Delegate.h"
-#include "Dolphin/ar.h"
-#include "Dolphin/dvd.h"
-#include "Dolphin/os.h"
+#include "dolphin/ar.h"
+#include "dolphin/dvd.h"
+#include "dolphin/os.h"
 #include "GfxObject.h"
 #include "Stream.h"
 #include "types.h"
@@ -528,7 +528,10 @@ struct AramStream : public RandomAccessStream {
 	virtual void read(void* data, int size)       // _3C (weak)
 	{
 		int readSize = OSRoundUp32B(size);
+		#ifdef GAMECUBE
+		//TODO
 		gsys->copyCacheToRam((u32)data, mBaseAddress + mOffset, readSize);
+		#endif
 		gsys->copyWaitUntilDone();
 		mOffset += readSize;
 	}
@@ -548,7 +551,7 @@ struct AramStream : public RandomAccessStream {
 	int mPending;     // _10
 };
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 extern SYSCORE_API HWND sysCurrWnd;
 #endif
 extern SYSCORE_API int glnWidth;

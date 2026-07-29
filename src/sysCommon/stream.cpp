@@ -90,7 +90,7 @@ void Stream::readString(String& str)
 void Stream::writeInt(int i)
 {
 	int result = i;
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	result = (((result & 0xFF000000) >> 24) | ((result & 0xFF0000) >> 8) | ((result & 0xFF00) << 8) | (result << 24));
 #endif
 	write(&result, sizeof(result));
@@ -110,7 +110,7 @@ void Stream::writeByte(u8 c)
 void Stream::writeShort(short _s)
 {
 	short s = _s;
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	s = (((s & 0xFF00) >> 8) | (s << 8));
 #endif
 	write(&s, sizeof(short));
@@ -122,7 +122,7 @@ void Stream::writeShort(short _s)
 void Stream::writeFloat(f32 f)
 {
 	f32 result = f;
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	int c  = reinterpret_cast<int&>(result);
 	result = ((u8)c << 24) | ((c & 0xFF00) << 8) | ((c & 0xFF0000) >> 8) | ((c & 0xFF000000) >> 24);
 #endif

@@ -382,7 +382,7 @@ public:
  */
 class AnimInfo : public CoreNode {
 public:
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer& server);
 #endif
 
@@ -442,7 +442,7 @@ public:
 	void addInfoKey(AnimKey* key) { mInfoKeys.mPrev->insertAfter(key); }
 
 // .dll exclusive function for writing animation data to file.
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void write(RandomAccessStream&);
 #endif
 
@@ -592,7 +592,7 @@ public:
 
 	AnimInfo* findAnim(int idx);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&);
 	virtual void write(RandomAccessStream&);
 

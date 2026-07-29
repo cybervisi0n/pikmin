@@ -55,7 +55,7 @@
 // conclusion.  The `PRINT` and `ERROR` macros never accepted variadic arguments to begin with, and that's how what were formerly
 // their arguments ended up affecting the compiled code: they got left behind when the `PRINT` and `ERROR` macros (accepting zero
 // arguments) expanded to nothing!
-#if defined(WIN32) || defined(DEVELOP)
+#if defined(PIKMIN_WIN32) || defined(DEVELOP)
 #define PRINT _Print
 #define ERROR _Error
 #elif defined(VERSION_DPIJ01_PIKIDEMO) or defined(VERSION_GPIJ01)
@@ -75,7 +75,7 @@ extern BOOL _nPrint;  // Nakata's PRINT flag
 extern BOOL _yPrint;  // Yamashita's PRINT flag
 
 // These macros should expand to nothing when matching the GCN versions of Pikmin 1 for the same reasons as the basic `PRINT` macro.
-#if defined(WIN32) || defined(DEVELOP)
+#if defined(PIKMIN_WIN32) || defined(DEVELOP)
 // clang-format off
 #define PRINT_NISHI if (_nsPrint) PRINT
 #define PRINT_COLIN if (_cPrint) PRINT

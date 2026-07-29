@@ -172,7 +172,7 @@ void Parm<Colour>::write(RandomAccessStream& output)
 	mValue.write(output);
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 template <>
 void Parm<Colour>::genAge(AgeServer& server)
 {
@@ -204,7 +204,7 @@ void Parm<Vector3f>::write(RandomAccessStream& output)
 	mValue.write(output);
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 template <>
 void Parm<Vector3f>::genAge(AgeServer& server)
 {
@@ -234,7 +234,7 @@ void Parm<f32>::write(RandomAccessStream& output)
 	output.writeFloat(mValue);
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 template <>
 void Parm<f32>::genAge(AgeServer& server)
 {
@@ -264,7 +264,7 @@ void Parm<int>::write(RandomAccessStream& output)
 	output.writeInt(mValue);
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 template <>
 void Parm<int>::genAge(AgeServer& server)
 {
@@ -294,7 +294,7 @@ void Parm<String>::write(RandomAccessStream& output)
 	output.writeString(mValue);
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 template <>
 void Parm<String>::genAge(AgeServer& server)
 {

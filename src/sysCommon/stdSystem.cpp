@@ -708,7 +708,7 @@ void TextureCacher::cacheTexture(CacheTexture* tex)
 	}
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 /**
  * Enumerates animations matching a prefix and registers them with an age

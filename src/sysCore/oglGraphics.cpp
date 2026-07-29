@@ -1239,7 +1239,7 @@ void OGLGraphics::texturePrintf(Font* font, int x, int y, immut char* format, ..
 	}
 }
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 
 /**
  * @todo Documentation

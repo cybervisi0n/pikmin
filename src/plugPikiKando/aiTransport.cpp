@@ -1277,7 +1277,7 @@ void ActTransport::findObstacle()
  */
 bool ActTransport::crMove()
 {
-#if defined(WIN32) // Only exists in the DLL, and it's very repetitive.
+#if defined(PIKMIN_WIN32) // Only exists in the DLL, and it's very repetitive.
 #define ASSERT_MVDIR_NOTNAN                                          \
 	if (isNan(mMoveDir.x) || isNan(mMoveDir.y) || isNan(mMoveDir.z)) \
 	ERROR

@@ -37,7 +37,7 @@ int BaseApp::idleupdate()
 {
 
 	bool hasUpdates = false;
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	if (mCommandStream) {
 		const int commandStatus = mCommandStream->checkCommands();
 
@@ -68,7 +68,7 @@ int BaseApp::idleupdate()
  */
 void BaseApp::startAgeServer()
 {
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	if (mAgeServer) {
 		return;
 	}
@@ -93,7 +93,7 @@ void BaseApp::startAgeServer()
  */
 void BaseApp::stopAgeServer()
 {
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	if (mAgeServer) {
 		PRINT("Atx - Wants to close Age service\n");
 		mAgeServer->mStream->writeInt(0xFFFF);

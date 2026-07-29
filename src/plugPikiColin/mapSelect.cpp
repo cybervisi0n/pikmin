@@ -226,7 +226,7 @@ public:
 	{
 		mController->update();
 
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 		// press R to increase the day by 1 (can't go above 30)
 		if (mController->keyClick(KBBTN_R)) {
 			if (++gameflow.mWorldClock.mCurrentDay > MAX_DAYS) {
@@ -247,7 +247,7 @@ public:
 
 		} else if (mSectionState == Active) {
 
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 			// press Z in the DEVELOP build to open the debug menu!
 			if (!mActiveOverlayMenu && mController->keyClick(KBBTN_Z)) {
 				// Identical to the implementation of `NewPikiGameSetupSection::openMenu`.

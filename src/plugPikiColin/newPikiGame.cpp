@@ -60,7 +60,7 @@ class NewPikiGameSetupSection;
 /// (This is about 8s of real-world time, or 7.5 in-game minutes.)
 #define MAP_MENU_SUNSET_LOCKOUT (0.125f)
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 /// Size of the "teki" heap to use for gameplay (and some cutscenes) - bigger in the DLL.
 #define TEKI_HEAP_SIZE (0xA00000)
 #else
@@ -931,7 +931,7 @@ ModeState* RunningModeState::update(u32& result)
 				gameflow.mIsUIOverlayActive = TRUE;
 			}
 		}
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 		// Mapping this to d-pad down was genuinely an atrocious choice, so I'm assigning it to d-pad up.
 		else if (mController->keyUnClick(TERNARY_BUILD_MATCHING(KBBTN_DPAD_DOWN, KBBTN_DPAD_UP))) {
 			mParentSection->openMenu();
@@ -1837,7 +1837,7 @@ public:
 		add(gamecore);
 
 		// debug menus!
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 		typedef Delegate1<NewPikiGameSetupSection, Menu&> NPGSSDelegate1; // This is an insanely long typename to spell.
 
 		// set up options debug menu
@@ -2811,7 +2811,7 @@ NewPikiGameSection::NewPikiGameSection()
 	// run gameplay at 30 fps
 	gsys->setFrameClamp(2);
 
-#if defined(WIN32) || defined(DEVELOP)
+#if defined(PIKMIN_WIN32) || defined(DEVELOP)
 	_nPrint = FALSE;
 	_kPrint = FALSE;
 #endif

@@ -108,7 +108,7 @@ public:
 	void parse(CmdStream*);
 	void getAnimInfo(CmdStream*);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&);
 #endif
 
@@ -205,7 +205,7 @@ public:
 	// unused/inlined:
 	void onceInit();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&);
 #endif
 
@@ -265,7 +265,7 @@ public:
 
 	ActorInstance* addInstance(immut char*);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&);
 #endif
 
@@ -311,7 +311,7 @@ public:
 	/// STRIPPED - initialises model and animation manager.
 	void init(immut char* modelPath, immut char* animPath, immut char* bundlePath);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&);
 #endif
 
@@ -372,7 +372,7 @@ public:
 	/// STRIPPED - sets up new scene with given .dsk file path, reads in data, and sets as current scene.
 	SceneData* addScene(immut char* dskFilePath);
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	// DLL exclusive functions (use -DWIN32)
 	void genAge(AgeServer&);
 	void ageAddActor(AgeServer&);

@@ -287,7 +287,7 @@ Creature* GenObjectItem::birth(BirthInfo& info)
 	return item;
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void GenObjectItem::doGenAge(AgeServer& server)
 {

@@ -51,7 +51,7 @@ Creature* GenObjectActor::birth(BirthInfo& info)
 	return newActor;
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void GenObjectActor::doGenAge(AgeServer& server)
 {

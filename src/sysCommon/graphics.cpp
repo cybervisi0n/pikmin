@@ -1133,7 +1133,7 @@ static const char* btipalFmts[] = {
  */
 void TexImg::dumpBti(Texture* tex, immut char* name, RandomAccessStream& input, RandomAccessStream& output)
 {
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	// read BTI function
 	// blah blah
 

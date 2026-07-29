@@ -167,7 +167,7 @@ void ID32::sprint(char* buffer) immut
 	buffer[4] = 0;
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 // .dll exclusive function
 

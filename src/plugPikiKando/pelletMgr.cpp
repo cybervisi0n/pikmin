@@ -1835,7 +1835,7 @@ PelletMgr* pelletMgr;
 
 // The functions following this point are exclusively found in the windows .dll build
 // None of this is confirmed to be equivalent for obvious reasons
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void PelletConfig::genAge(AgeServer& server)
 {

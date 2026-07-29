@@ -205,7 +205,7 @@ PaniPelletAnimator::PaniPelletAnimator()
 {
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void PelletAnimInfo::write(RandomAccessStream& output)
 {

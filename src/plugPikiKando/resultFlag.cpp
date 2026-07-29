@@ -336,7 +336,7 @@ void ResultFlags::dump()
 		}
 
 		// For some God-forsaken reason, the devs decided to micro-optimize this code to do different things between the DLL and the DOL.
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 		const char* strs[4];
 		strs[3] = nullptr;
 
@@ -370,7 +370,7 @@ void ResultFlags::dump()
 		}
 		prev = info.type();
 
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 		strs[0] = "OFF";
 		strs[1] = "ON";
 		strs[2] = "SEEN";

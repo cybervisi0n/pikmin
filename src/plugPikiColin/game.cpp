@@ -413,7 +413,7 @@ void OnePlayerSection::init()
 			// gameplay!
 
 			// The exact position of this DLL-exclusive code is unclear because some of the following code is DOL-exclusive.
-#if defined(WIN32) || defined(DEVELOP)
+#if defined(PIKMIN_WIN32) || defined(DEVELOP)
 			_nsPrint = FALSE;
 			_yPrint  = FALSE;
 			_kPrint  = FALSE;

@@ -431,7 +431,7 @@ Navi::Navi(CreatureProp* props, int naviID)
 {
 	mLowerMotionCooldown = 4;
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	mLociCount = 32;
 	mLoci      = new Locus[mLociCount];
 #endif
@@ -876,7 +876,7 @@ void Navi::update()
 	STACK_PAD_VAR(1);
 
 	// Game freeze keybind? This has to be excluded from release because it inflates the stack a LOT.
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	if (mKontroller->keyClick(KBBTN_R) && mKontroller->keyDown(KBBTN_B) && mKontroller->keyDown(KBBTN_A)) {
 		// flip a debug flag
 	}

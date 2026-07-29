@@ -103,7 +103,7 @@ Creature* GenObjectPellet::birth(BirthInfo& info)
 	return pelt;
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void GenObjectPellet::doGenAge(AgeServer& server)
 {

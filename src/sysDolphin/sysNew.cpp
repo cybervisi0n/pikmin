@@ -57,7 +57,7 @@ void* System::alloc(size_t size)
 			resPtr[i] = 0;
 		}
 	} else {
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 		// The DLL uses `GlobalAlloc` here and has an ERROR if that fails.  This branch of code is probably DLL exclusive,
 		// since the GCN can't just ask WinAPI for unlimited memory.  We'll see once JPN Demo version matching begins.
 		if (!result) {

@@ -317,7 +317,7 @@ struct GenBase : public Parameters {
 	void readVersion(RandomAccessStream&);
 	void read(RandomAccessStream&);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	void genAge(AgeServer&) { }
 #endif
 
@@ -365,7 +365,7 @@ struct GenObjectActor : public GenObject {
 
 	static void initialise();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&);
 #endif
 
@@ -400,7 +400,7 @@ public:
 
 	static void initialise();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&);
 #endif
 
@@ -427,7 +427,7 @@ struct GenObjectDebug : public GenObject {
 
 	static void initialise();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&) { }
 #endif
 
@@ -454,7 +454,7 @@ struct GenObjectItem : public GenObject {
 
 	static void initialise();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&);
 #endif
 
@@ -504,7 +504,7 @@ struct GenObjectMapObject : public GenObject {
 
 	static void initialise(MapMgr* mgr);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doWrite(RandomAccessStream& output);
 	virtual void doGenAge(AgeServer& server);
 
@@ -544,7 +544,7 @@ public:
 
 	static void initialise(MapMgr*);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&);
 #endif
 	void refreshSection(AgeServer&);
@@ -577,7 +577,7 @@ struct GenObjectNavi : public GenObject {
 
 	static void initialise();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&) { }
 #endif
 
@@ -599,7 +599,7 @@ struct GenObjectPellet : public GenObject {
 
 	static void initialise();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&);
 #endif
 
@@ -645,7 +645,7 @@ struct GenObjectPlant : public GenObject {
 
 	static void initialise();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&);
 #endif
 
@@ -669,7 +669,7 @@ struct GenObjectTeki : public GenObject {
 
 	static void initialise();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&);
 #endif
 
@@ -695,7 +695,7 @@ public:
 
 	static void initialise();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void doGenAge(AgeServer&);
 #endif
 
@@ -1012,7 +1012,7 @@ class GeneratorMgr : public Node {
 public:
 	GeneratorMgr();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&);
 #endif
 

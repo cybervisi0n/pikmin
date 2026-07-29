@@ -106,7 +106,7 @@ void MtxGroup::read(RandomAccessStream& stream)
 		mDispList = new DispList[mDispLength];
 		for (int i = 0; i < mDispLength; i++) {
 			mDispList[i].read(stream);
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 			DlobjInfo* info = new DlobjInfo();
 			info->mDispList = &mDispList[i];
 			gsys->addGfxObject(info);
@@ -209,7 +209,7 @@ void Joint::read(RandomAccessStream& stream)
 	}
 }
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 
 /**
  * @todo: Documentation
@@ -986,7 +986,7 @@ void AnimData::makeAnimSRT(int boneId, immut Matrix4f* parent, Matrix4f* output,
 		}
 	}
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	parent->multiplyTo(*boneTransform, *output);
 #else
 	MTXConcat(parent->mMtx, boneTransform->mMtx, output->mMtx);
@@ -1688,7 +1688,7 @@ void AnimDck::makeAnimSRT(int a, immut Matrix4f* mtx1, Matrix4f* mtx2, AnimDataI
 			anim->mMtx.makeSRT(srt.s, srt.r, srt.t);
 			anim->mFlags |= AnimDataFlags::MatrixCalculated;
 		}
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 		mtx1->multiplyTo(anim->mMtx, *mtx2);
 #else
 		MTXConcat(mtx1->mMtx, anim->mMtx.mMtx, mtx2->mMtx);
@@ -1869,7 +1869,7 @@ BaseShape::BaseShape()
 	mCurrentAnimation = 0;
 	mFrameCacher      = nullptr;
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	mDebugData.initCore("");
 #endif
 	mCollisionInfo.initCore("");
@@ -2746,7 +2746,7 @@ void BaseShape::initIni(bool usePlatforms)
 
 	FOREACH_NODE(RouteGroup, mRouteGroup.Child(), route)
 	{
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 		route->mDebugWaypointTexture            = gsys->loadTexture("rootRing.txe", true);
 		route->mDebugWaypointTexture->mTexFlags = Texture::TEX_CLAMP_S | Texture::TEX_CLAMP_T;
 #else
@@ -2820,7 +2820,7 @@ void BaseShape::createCollisions(int gridSize)
 {
 	u32 heapStart = gsys->getHeap(SYSHEAP_App)->getFree();
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	// This code could use a cleanup pass on its variable names.
 	for (int triIdx = 0; triIdx < mTriCount; triIdx++) {
 		for (int i = 0; i < 3; i++) {
@@ -3042,7 +3042,7 @@ AnimData* BaseShape::loadDck(immut char* name, RandomAccessStream& s)
 		PRINT("(%s) NUMJOINTS DOES NOT MATCH, THINGS MIGHT GO WRONG!!!\n", name);
 	}
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	mDebugData.add(pDck);
 #endif
 	mCurrentAnimation->mData         = pDck;
@@ -3070,7 +3070,7 @@ AnimData* BaseShape::importDck(immut char* name, CmdStream* cmds)
 		data = nullptr;
 	}
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	mDebugData.add(data);
 #endif
 	mCurrentAnimation->mData         = data;
@@ -3090,7 +3090,7 @@ AnimData* BaseShape::loadDca(immut char* name, RandomAccessStream& s)
 		PRINT("(%s) NUMJOINTS DOES NOT MATCH, THINGS MIGHT GO WRONG!!!\n", name);
 	}
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	mDebugData.add(pDca);
 #endif
 	mCurrentAnimation->mData = pDca;
@@ -3116,7 +3116,7 @@ void BaseShape::importDca(immut char* name, CmdStream* cmds)
 		PRINT("NUMJOINTS DOES NOT MATCH, THINGS MIGHT GO WRONG!!!\n");
 	}
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	mDebugData.add(data);
 #endif
 	mCurrentAnimation->mData = data;
@@ -3306,7 +3306,7 @@ void BaseShape::updateAnim(Graphics& gfx, immut Matrix4f& mtx, f32* p3)
 				immut Matrix4f* srtMtx = (mJointList[i].mParentIndex != -1) ? &mAnimMatrices[mJointList[i].mParentIndex] : &mtx;
 				data->makeAnimSRT(data->mAnimJointIndices[i], srtMtx, &mAnimMatrices[i], &data->mAnimInfo[i], *frame);
 			} else {
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 				mtx.multiplyTo(mJointList[i].mAnimMatrix, mAnimMatrices[i]);
 #else
 				MTXConcat(mtx.mMtx, mJointList[i].mAnimMatrix.mMtx, mAnimMatrices[i].mMtx);
@@ -3381,7 +3381,7 @@ void BaseShape::calcWeightedMatrices()
 {
 	for (int envIdx = 0; envIdx < mEnvelopeCount; envIdx++) {
 		f32* animMtxFloats = reinterpret_cast<f32*>(&mAnimMatrices[mJointCount + envIdx].mMtx);
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 		for (int count = 0; count < 16; count++)
 #else
 		for (int count = 0; count < 12; count++)
@@ -3398,14 +3398,14 @@ void BaseShape::calcWeightedMatrices()
 			Matrix4f weightedMtx;
 			f32* weightedMtxFloats;
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 			getAnimMatrix(idx).multiplyTo(mJointList[idx].mInverseAnimMatrix, weightedMtx);
 #else
 			MTXConcat(getAnimMatrix(idx).mMtx, mJointList[idx].mInverseAnimMatrix.mMtx, weightedMtx.mMtx);
 #endif
 			weightedMtxFloats = reinterpret_cast<f32*>(&weightedMtx);
 			animMtxFloats     = reinterpret_cast<f32*>(&mAnimMatrices[mJointCount + envIdx]);
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 			for (int count = 0; count < 12; count++) {
 				*animMtxFloats += *weightedMtxFloats * weight;
 				weightedMtxFloats++;

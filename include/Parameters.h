@@ -57,7 +57,7 @@ struct BaseParm {
 	BaseParm* mNext; ///< _04, next parameter in the (singly-linked) list.
 
 	virtual int size() = 0; // _08
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&) { }
 #endif
 
@@ -89,7 +89,7 @@ public:
 	Parameters(immut char* name)
 	{
 		mFirstParm = nullptr;
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 		mName = name;
 #endif
 	}
@@ -97,7 +97,7 @@ public:
 	void write(RandomAccessStream&);
 	void read(RandomAccessStream&);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	void genAge(AgeServer&, int);
 	void genAgeParms(AgeServer&, int);
 #endif
@@ -106,7 +106,7 @@ public:
 
 	int sizeInFile();
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	immut char* mName;    ///< _00, name for this collection of parameters.
 #endif                    //
 	BaseParm* mFirstParm; ///< _00, pointer to first parameter node in the list.
@@ -122,7 +122,7 @@ struct Parm : public BaseParm {
 	Parm(Parameters* owner, T value, T min, T max, ayuID id, immut char* name)
 	    : BaseParm(owner, id)
 	{
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 		mName         = name;
 		mValue        = value;
 		mDefaultValue = value;
@@ -140,14 +140,14 @@ struct Parm : public BaseParm {
 	T& operator()() { return mValue; }
 	void operator()(T val) { mValue = val; }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&);
 #endif
 
 	// _08     = VTBL
 	// _00-_0C = BaseParm
 	T mValue;          // _0C
-#ifdef WIN32           //
+#ifdef PIKMIN_WIN32           //
 	T mDefaultValue;   // _10
 	T mMinValue;       // _14
 	T mMaxValue;       // _18
@@ -156,7 +156,7 @@ struct Parm : public BaseParm {
 };
 
 // For some reason, giving `CreatureProp::Parms` its parameter strings messes up matching.
-#if defined(BUILD_MATCHING) && !defined(WIN32)
+#if defined(BUILD_MATCHING) && !defined(PIKMIN_WIN32)
 #define MATCHING_PARM_NAME(name) nullptr
 #else
 #define MATCHING_PARM_NAME(name) name

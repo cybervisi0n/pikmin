@@ -11,7 +11,7 @@ class AgeServer;
  */
 class ANode {
 public:
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	virtual void genAge(AgeServer& server) { }
 	virtual void genAgeNode(AgeServer& server) { }
 #endif

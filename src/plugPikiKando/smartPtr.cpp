@@ -36,7 +36,7 @@ void RefCountable::clearCnt()
 void RefCountable::addCnt()
 {
 	mCount++;
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	addCntCallback();
 #endif
 }
@@ -47,7 +47,7 @@ void RefCountable::addCnt()
 void RefCountable::subCnt()
 {
 	mCount--;
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	subCntCallback();
 #endif
 	if (mCount < 0) {

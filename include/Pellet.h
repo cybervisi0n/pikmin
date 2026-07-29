@@ -277,7 +277,7 @@ public:
 
 	void removeSelf(AgeServer&);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&);
 	virtual void write(RandomAccessStream&);
 #endif
@@ -447,7 +447,7 @@ public:
 
 	PelletMgr(MapMgr*);
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	virtual void genAge(AgeServer&);
 #endif
 	virtual ~PelletMgr() { }                // _48 (weak)

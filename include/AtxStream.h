@@ -68,7 +68,7 @@ public:
  */
 class TcpStream : public Stream {
 public:
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	TcpStream();
 	TcpStream(WSocket*);
 
@@ -173,7 +173,7 @@ public:
 	AtxStream mAtxStream; // _10, underlying ATX stream used for communication
 };
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 /**
  * @brief Direct router using TCP for AtxStream.
  */

@@ -606,7 +606,7 @@ void GameCoreSection::cleanupDayEnd()
 
 			if (piki->isKinoko()) {
 				GameStat::victimPikis.inc(piki->mColor);
-#if defined(VERSION_PIKIDEMO) || defined(VERSION_GPIJ01_01) || defined(WIN32)
+#if defined(VERSION_PIKIDEMO) || defined(VERSION_GPIJ01_01) || defined(PIKMIN_WIN32)
 #else
 				GameStat::deadPikis.inc(piki->mColor);
 #endif
@@ -665,7 +665,7 @@ void GameCoreSection::cleanupDayEnd()
 
 			if (!isNearOnyonShip) {
 				GameStat::victimPikis.inc(piki->mColor);
-#if defined(VERSION_PIKIDEMO) || defined(VERSION_GPIJ01_01) || defined(WIN32)
+#if defined(VERSION_PIKIDEMO) || defined(VERSION_GPIJ01_01) || defined(PIKMIN_WIN32)
 #else
 				GameStat::deadPikis.inc(piki->mColor);
 #endif
@@ -1300,7 +1300,7 @@ GameCoreSection::GameCoreSection(Controller* controller, MapMgr* mgr, Camera& ca
 	mDrawHideType = 0;
 	textDemoState = 0;
 	finishPause();
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	// Player 2 controller responsible for additional debug controls
 	/* DAT_104c2340 = */ new Controller(2);
 	bugPrintBuffer = new BugPrintBuffer();
@@ -1509,7 +1509,7 @@ void GameCoreSection::update()
 
 	if (!gameflow.mPauseAll && !gameflow.mIsUIOverlayActive) {
 		playerState->update();
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 		bugPrintBuffer->update();
 #endif
 	}

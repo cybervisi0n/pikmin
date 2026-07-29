@@ -61,7 +61,7 @@ void GenObjectMapObject::doRead(RandomAccessStream& input)
 	mObjType = input.readInt();
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void GenObjectMapObject::doWrite(RandomAccessStream& output)
 {

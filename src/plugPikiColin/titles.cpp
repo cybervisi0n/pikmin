@@ -170,7 +170,7 @@ public:
 		mCameraZoom = 0.45f;
 		_39C        = 1.0f; // unused
 
-#if defined(WIN32) // DLL exclusive
+#if defined(PIKMIN_WIN32) // DLL exclusive
 		// set but never used
 		PRINT("big font!\n");
 		mFont = new Font();
@@ -226,7 +226,7 @@ public:
 
 		mActiveDebugMenu = nullptr;
 
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 		Menu* optionsMenu = new Menu(mController, gsys->mConsFont);
 
 		optionsMenu->mCenterPoint.mMinX = glnWidth / 2;
@@ -247,7 +247,7 @@ public:
 		                        new Delegate1<TitleSetupSection, Menu&>(this, &TitleSetupSection::menuSelectOption));
 		mDebugMenu->addKeyEvent(Menu::KeyEventType::OnCancel, KBBTN_B, new Delegate1<Menu, Menu&>(mDebugMenu, &Menu::menuCloseMenu));
 
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 		mDebugMenu->addOption(PACK_NEXT_ONEPLAYER(ONEPLAYER_GameSetup), "Start GL Game", nullptr);
 		mDebugMenu->addOption(PACK_NEXT_ONEPLAYER(ONEPLAYER_GameSetup), "Challenge Mode",
 		                      new Delegate1<TitleSetupSection, Menu&>(this, &TitleSetupSection::menuChallengeOption));
@@ -501,7 +501,7 @@ public:
 					}
 				}
 
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 				if (mController->keyUnClick(KBBTN_Z)) {
 					// open debug menu with Z
 					mActiveDebugMenu = mDebugMenu;
@@ -732,7 +732,7 @@ public:
 		menu->draw(gfx, fadeFactor);
 	}
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	void genAge(AgeServer& server) { mPlayer->genAge(server); }
 #endif
 
@@ -758,7 +758,7 @@ public:
 	u8 _A38[0x4];               ///< _A38, unknown/unused.
 	DayMgr* mDayMgr;            ///< _A3C, lighting manager for the title screen.
 	Vector3f mCameraFocusPoint; ///< _A40, target/watch position for unused title screen camera.
-#if defined(WIN32)              //
+#if defined(PIKMIN_WIN32)              //
 	CoreNode _A4C;              ///< _A4C, DLL-exclusive but unused.
 	CoreNode _A60;              ///< _A60, DLL-exclusive but unused.
 #endif

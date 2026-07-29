@@ -224,7 +224,7 @@ public:
 		z += _z;
 	}
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	void genAge(AgeServer&, char*, Vector3f&, Vector3f&)
 	{
 		// Empty implementation

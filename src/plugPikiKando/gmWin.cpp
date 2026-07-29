@@ -222,7 +222,7 @@ GmWinMgr::GmWinMgr()
 	mRoot.initCore("gmwin-root");
 
 	// This function's size is way off when naively following the DLL.  Something has got to give.
-#if !defined(BUILD_MATCHING) || defined(WIN32)
+#if !defined(BUILD_MATCHING) || defined(PIKMIN_WIN32)
 	wintex       = gsys->loadTexture("2d_data/karltexs/gmwin.bti", true);
 	arrowtex     = gsys->loadTexture("2d_data/karltexs/arrow.bti", true);
 	udarrowtex   = gsys->loadTexture("2d_data/karltexs/udarrow.bti", true);

@@ -227,7 +227,7 @@ Creature* GenObjectBoss::birth(BirthInfo& info)
 	return boss;
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void GenObjectBoss::doGenAge(AgeServer& server)
 {

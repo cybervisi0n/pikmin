@@ -116,7 +116,7 @@ Creature* GenObjectTeki::birth(BirthInfo& info)
 	return teki;
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void GenObjectTeki::doGenAge(AgeServer& server)
 {

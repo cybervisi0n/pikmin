@@ -175,7 +175,7 @@ void Slime::drawShape(Graphics& gfx)
 		mShapeObject->mShape->drawshape(gfx, *gfx.mCamera, nullptr);
 	}
 
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 	Boss::drawShape(gfx);
 
 	// This is really distracting to be enabled by default, so I've taken the liberty of adding a toggle.

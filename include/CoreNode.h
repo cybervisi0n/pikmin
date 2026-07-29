@@ -19,7 +19,7 @@ public:
 	 */
 	CoreNode(immut char* name = "CoreNode") { initCore(name); }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	/**
 	 * @brief TODO
 	 */

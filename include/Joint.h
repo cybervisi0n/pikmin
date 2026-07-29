@@ -51,7 +51,7 @@ public:
 	}
 
 	virtual void read(RandomAccessStream&); // _0C
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	virtual void write(RandomAccessStream&);
 #endif
 

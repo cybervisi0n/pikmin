@@ -242,7 +242,7 @@ public:
 		mFlareGroup = nullptr;
 	}
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	void addLight(Vector3f&, f32);
 	void ageAddFlare(AgeServer&);
 	void ageChangeTexture(AgeServer&);

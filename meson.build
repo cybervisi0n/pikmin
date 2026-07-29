@@ -17,6 +17,12 @@ if(build_target == 'gc')
 shared_args += ['-DGAMECUBE']
 endif
 
+if(get_option('pikmin_win32') == true)
+    shared_args += [
+        '-DPIKMIN_WIN32'
+    ]
+endif
+
 project_c_args = shared_args + [
 ]
 project_cpp_args = shared_args + [

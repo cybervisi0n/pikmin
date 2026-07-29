@@ -345,7 +345,7 @@ public:
 	s32 _70;                            // _70
 	s32 mTextureCount;                  // _74
 	TexImg* mTextureList;               // _78
-#if defined(WIN32)                      //
+#if defined(PIKMIN_WIN32)                      //
 	AnimData mDebugData;                // This extra member exists in the DLL
 #endif                                  //
 	LightGroup mLightGroup;             // _7C

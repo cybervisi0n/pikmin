@@ -196,7 +196,7 @@ public:
 	virtual void initReflectTex(bool)                                             = 0;     // _E8
 	virtual void texturePrintf(Font* font, int x, int y, immut char* format, ...) = 0;     // _EC
 	virtual void perspPrintf(Font*, immut Vector3f&, int, int, immut char*, ...);          // _F0
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	virtual void genAge(AgeServer&) { }
 #endif
 };
@@ -363,7 +363,7 @@ struct OGLGraphics : public Graphics {
 	virtual void initProjTex(bool, LightCamera*);                                                                     // _E4
 	virtual void initReflectTex(bool);                                                                                // _E8
 	virtual void texturePrintf(Font* font, int x, int y, immut char* format, ...);                                    // _EC
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	virtual void genAge(AgeServer&);
 #endif
 

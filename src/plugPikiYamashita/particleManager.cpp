@@ -89,7 +89,7 @@ void zen::particleManager::update()
 	}
 
 	mSimplePtclMgr.update(timeStep);
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	debugUpdate();
 #endif
 	mInactiveGenList.merge(&_20); // merges _20 into _10
@@ -112,7 +112,7 @@ void zen::particleManager::calcActiveList()
  */
 void zen::particleManager::debugUpdate()
 {
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	calcActiveList();
 	if (mMaxUsedPtclGenCount < mActivePtclGenCount) {
 		mMaxUsedPtclGenCount = mActivePtclGenCount;
@@ -141,7 +141,7 @@ void zen::particleManager::draw(Graphics& gfx)
 	}
 
 	mSimplePtclMgr.draw(gfx);
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	debugDraw(gfx);
 #endif
 }
@@ -164,7 +164,7 @@ void zen::particleManager::cullingDraw(Graphics& gfx)
 	}
 
 	mSimplePtclMgr.draw(gfx);
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	debugDraw(gfx);
 #endif
 }
@@ -175,7 +175,7 @@ void zen::particleManager::cullingDraw(Graphics& gfx)
  */
 void zen::particleManager::debugDraw(Graphics& gfx)
 {
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	Matrix4f orthoMtx;
 
 	if (gsys->mToggleDebugExtra) {

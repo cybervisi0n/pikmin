@@ -266,7 +266,7 @@ void AtxFileStream::setLength(int length)
 	mLength = length;
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 /**
  * @brief A no-op function.

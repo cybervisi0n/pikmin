@@ -559,7 +559,7 @@ void Boss::refreshViewCulling(Graphics& gfx)
  */
 void Boss::drawShape(Graphics& gfx)
 {
-#if defined(DEVELOP) || defined(WIN32)
+#if defined(DEVELOP) || defined(PIKMIN_WIN32)
 	// This is really distracting to be enabled by default, so I've taken the liberty of adding a toggle.
 #if !defined(BUILD_MATCHING)
 	if (gsys->mToggleDebugInfo)

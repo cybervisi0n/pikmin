@@ -416,7 +416,7 @@ void GenObjectPlant::render(Graphics&, Generator*)
 	plantMgr->usePlantType(mPlantType);
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void GenObjectPlant::doGenAge(AgeServer& server)
 {

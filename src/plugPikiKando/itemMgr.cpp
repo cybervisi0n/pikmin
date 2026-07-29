@@ -484,7 +484,7 @@ void ItemMgr::initialise()
 	// seems like these got initialised, but then their definitions got commented out? they're still used
 	Shape* doorShape;
 	Shape* keyShape;
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	doorShape = gameflow.loadShape("objects/door.mod", true);
 	keyShape  = gameflow.loadShape("objects/key.mod", true);
 #endif
@@ -493,7 +493,7 @@ void ItemMgr::initialise()
 	seedShapes[0] = gameflow.loadShape("pikis/happas/leaf.mod", true);
 	seedShapes[1] = gameflow.loadShape("pikis/happas/leaf.mod", true);
 	gameflow.loadShape("pikis/happas/leaf.mod", true);
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	gameflow.loadShape("shapes/arrow.mod", true);
 	gameflow.loadShape("shapes/oldMarkr.mod", true);
 #endif

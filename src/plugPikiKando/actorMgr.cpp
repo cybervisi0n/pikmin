@@ -31,7 +31,7 @@ ActorMgr::ActorMgr(MapMgr* mapMgr)
 	mPoliceAIList    = new PoliceAI*[mListsLength];
 
 	// This function's size is way off when naively following the DLL.  Something has got to give.
-#if !defined(BUILD_MATCHING) || defined(WIN32)
+#if !defined(BUILD_MATCHING) || defined(PIKMIN_WIN32)
 	mShapeObjectList[0] = new PikiShapeObject(gameflow.loadShape("pikis/bluModel.mod", false));
 #endif
 	mNaviPropList[0] = new NaviProp();

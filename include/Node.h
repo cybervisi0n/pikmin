@@ -71,7 +71,7 @@ public:
 		mColIdx       = nullptr;
 		mNrmIdx       = nullptr;
 		mTexCoords[0] = nullptr;
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 		mMtxGroupIndex    = 0;
 		mMtxGroupCount    = 0;
 		mNumMatrices      = 0;
@@ -89,7 +89,7 @@ public:
 	int* mVtxIdx;   // _1C
 	int* mColIdx;   // _20
 	int* mNrmIdx;   // _24
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	int* mTexCoords[1];    // _28, OGLGraphics only supports GX_TEXCOORD0
 	int mMtxGroupIndex;    // _2C
 	int mMtxGroupCount;    // _30

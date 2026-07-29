@@ -80,7 +80,7 @@ struct DVDStream : public RandomAccessStream {
 System sys;
 
 static bool useSymbols = false;
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 SYSCORE_API HWND sysCurrWnd;
 #endif
 SYSCORE_API System* gsys = nullptr;
@@ -1003,7 +1003,7 @@ bool System::hasDebugInfo()
  */
 void System::halt(immut char* file, int line, immut char* message)
 {
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 	char buffer[2048];
 	sprintf(buffer, "%s\n\nClick OK to quit now !", message);
 	MessageBox(NULL, buffer, "Error!", MB_ICONEXCLAMATION);
@@ -1438,7 +1438,7 @@ void System::startDvdThread()
 	OSResumeThread(&dvdThread);
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 // TODO, this function is pulled from MSVCRTD.dll
 FILE* fopen(char*, char*)

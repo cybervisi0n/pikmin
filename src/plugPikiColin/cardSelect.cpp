@@ -93,7 +93,7 @@ struct CardSelectSetupSection : public Node {
 			mJacSetupCountdown--;
 
 			if (mJacSetupCountdown == 0) {
-#ifndef WIN32
+#ifndef PIKMIN_WIN32
 				Jac_SceneSetup(SCENE_FileSelect, 0);
 #endif
 			}
@@ -155,7 +155,7 @@ struct CardSelectSetupSection : public Node {
 				gameflow.mPendingStageUnlockID = -1;
 			}
 
-#ifndef WIN32
+#ifndef PIKMIN_WIN32
 			Jac_SceneExit(SCENE_Exit, 0);
 #endif
 

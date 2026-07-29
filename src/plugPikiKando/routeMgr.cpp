@@ -1020,7 +1020,7 @@ void RouteMgr::construct(MapMgr* map)
  */
 void RouteMgr::initLinks()
 {
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 #else
 	bool check           = gsys->mPrevAllocType;
 	gsys->mPrevAllocType = FALSE;
@@ -1039,7 +1039,7 @@ void RouteMgr::initLinks()
 		wp->initLinkInfos();
 	}
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 #else
 	gsys->mPrevAllocType = check;
 	gsys->mRetraceCount  = 0;

@@ -993,7 +993,7 @@ void zen::ogRaderMgr::DrawCircle(u8 r, u8 g, u8 b, u8 a, f32 radius)
 		yVerts[i] = sinf(theta) * screenRadius + screenYOffset;
 	}
 
-#if defined(WIN32)
+#if defined(PIKMIN_WIN32)
 	// THAT'S RIGHT!  THIS FUNCTION DOES NOTHING!  NOTHING AT ALL!
 	// ...okay well it probably did SOMETHING, because this function
 	// is WAY under-size for matching, but it probably directly used

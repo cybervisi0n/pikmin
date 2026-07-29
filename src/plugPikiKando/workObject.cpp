@@ -1509,7 +1509,7 @@ bool InteractBreak::actBridge(Bridge* bridge) immut
 	return true;
 }
 
-#ifdef WIN32
+#ifdef PIKMIN_WIN32
 
 void GenObjectWorkObject::changeNaviPos()
 {
