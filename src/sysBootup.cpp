@@ -5,7 +5,11 @@
 /**
  * @todo: Documentation
  */
+#ifdef GAMECUBE
 TERNARY_BUILD_MATCHING(void, int) main(int argc, char* argv[])
+#else
+void sysBootupMain()
+#endif
 {
 	gsys->Initialise();
 	nodeMgr = new NodeMgr();
@@ -13,3 +17,9 @@ TERNARY_BUILD_MATCHING(void, int) main(int argc, char* argv[])
 
 	OSErrorLine(29, "End of demo");
 }
+
+#ifdef PCPORT
+extern "C" void DolphinMain() {
+	sysBootupMain();
+}
+#endif

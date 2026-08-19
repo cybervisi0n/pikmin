@@ -1062,7 +1062,11 @@ void TexImg::read(RandomAccessStream& stream)
 	_     = stream.readInt();
 
 	mDataSize    = stream.readInt();
+	#ifdef GAMECUBE
 	mTextureData = new (0x20) u8[mDataSize];
+	#else
+	mTextureData = new u8[mDataSize];
+	#endif
 	stream.read(mTextureData, mDataSize);
 }
 
@@ -1104,7 +1108,11 @@ void TexImg::readTexData(Texture* tex, RandomAccessStream& stream, u8* data)
 	mDataSize = TexImg::calcDataSize(mFormat, mWidth, mHeight);
 
 	if (!data) {
+		#ifdef GAMECUBE
 		mTextureData = new (0x20) u8[mDataSize];
+		#else
+		mTextureData = new u8[mDataSize];
+		#endif
 	} else {
 		mTextureData = data;
 	}

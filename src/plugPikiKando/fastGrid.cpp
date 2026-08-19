@@ -43,7 +43,11 @@ void FastGrid::initAIGrid(u8 shift)
 	aiGridSize = (1 << (16 - aiGridShift));
 
 	memStat->start("aiGrid");
+	#ifdef GAMECUBE
 	aiGridMap = new (0x20) u8[aiGridSize * aiGridSize];
+	#else
+	aiGridMap = new u8[aiGridSize * aiGridSize];
+	#endif
 	clearAIGrid();
 	memStat->end("aiGrid");
 	PRINT("aiGridSize = %d : total = %d (KBytes)\n", aiGridSize, aiGridSize * aiGridSize);

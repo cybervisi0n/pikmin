@@ -45,7 +45,11 @@ KIO::KIO()
 {
 	mIsReady      = false;
 	kio           = this;
+	#ifdef GAMECUBE
 	mHeaderBuffer = new (0x20) u8[0x100]; // something goes here, probably not this
+	#else
+	mHeaderBuffer = new u8[0x100];
+	#endif
 	fbCopy        = false;
 	mIsActive     = false;
 	haltMessage   = nullptr;

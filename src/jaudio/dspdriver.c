@@ -1,6 +1,6 @@
 #include "jaudio/dspdriver.h"
 
-#include "dolphin/PPCArch.h"
+#include "dolphin/base/PPCArch.h"
 #include "jaudio/audiothread.h"
 #include "jaudio/driverinterface.h"
 #include "jaudio/dspinterface.h"

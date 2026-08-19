@@ -25,7 +25,11 @@ void BufferedInputStream::init(Stream* stream, u8* buffer, int bufferSize)
 {
 	mPath             = StdSystem::stringDup(stream->mPath);
 	mBufferSize       = bufferSize;
+	#ifdef GAMECUBE
 	mBuffer           = buffer ? buffer : new (0x20) u8[mBufferSize];
+	#else
+	mBuffer           = buffer ? buffer : new u8[mBufferSize];
+	#endif
 	mPosition         = 0;
 	mCurrentBufferPos = 0;
 	mRemainingBytes   = 0;

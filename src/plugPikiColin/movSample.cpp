@@ -162,13 +162,22 @@ struct MovSampleSetupSection : public Node {
 		};
 #if PIKI_USE_JAUDIO
 		int movieBufferSize = 0xe00000;
+		#ifdef GAMECUBE
 		u8* movieBuffer     = new (0x20) u8[movieBufferSize];
+		#else
+		u8* movieBuffer     = new u8[movieBufferSize];
+		#endif
 		Jac_StreamMovieInit(movieNames[gameflow.mCurrIntroMovieID], movieBuffer, movieBufferSize);
 		ImgW                = 640;
 		ImgH                = 480;
 		int yuvBufferSize   = 0x70800;
+		#ifdef GAMECUBE
 		mYuvFrameBuffers[0] = new (0x20) u8[yuvBufferSize];
 		mYuvFrameBuffers[1] = new (0x20) u8[yuvBufferSize];
+		#else
+		mYuvFrameBuffers[0] = new u8[yuvBufferSize];
+		mYuvFrameBuffers[1] = new u8[yuvBufferSize];
+		#endif
 		for (int i = 0; i < 2; i++) {
 			u8* frameBuffer  = mYuvFrameBuffers[i];
 			u8* chromaBuffer = &mYuvFrameBuffers[i][ImgW * ImgH];

@@ -293,7 +293,11 @@ void Texture::createBuffer(int width, int height, int texFmt, void* buf)
 	mHeight      = height;
 	int dataSize = TexImg::calcDataSize(mTexFormat, mWidth, mHeight);
 
+#ifdef GAMECUBE
 	mPixelData = (buf) ? buf : new (0x20) u8[(dataSize / 2) * 2];
+#else
+	mPixelData = (buf) ? buf : new u8[(dataSize / 2) * 2];
+#endif
 
 	mWidthFactor  = 1.0f / mWidth;
 	mHeightFactor = 1.0f / mHeight;

@@ -203,7 +203,11 @@ GameSetupSection::GameSetupSection()
 	kio = new KIO();
 	kio->initialise();
 	int saveSize     = Kontroller::getSaveSize(CONTROLLER_INPUT_BUFFER_SIZE / 12);
+	#ifdef GAMECUBE
 	void* saveBuffer = new (0x20) u8[saveSize];
+	#else
+	void* saveBuffer = new u8[saveSize];
+	#endif
 	controllerBuffer = new RamStream(saveBuffer, saveSize);
 
 	// load pikmin head and whistle models

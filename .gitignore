@@ -1,6 +1,8 @@
 # IDE folders
 .idea/
 .vs/
+.vscode/launch.json
+.vscode/tasks.json
 
 # Caches
 __pycache__
@@ -62,3 +64,6 @@ dtk-tools/
 
 # Subprojects
 subprojects/libPorpoise/
+
+# Meson files
+subprojects/.wraplock

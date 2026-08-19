@@ -1,5 +1,5 @@
 #include "jaudio/audiothread.h"
-#include "dolphin/OS/OSThread.h"
+#include "dolphin/os/OSThread.h"
 #include "dolphin/ai.h"
 #include "dolphin/dsp.h"
 #include "dolphin/hw_regs.h"
@@ -207,6 +207,8 @@ static void* audioproc(void*)
 		OSMessage msg;
 
 		OSReceiveMessage(&audioproc_mq, &msg, OS_MESSAGE_BLOCK);
+		#ifdef GAMECUBE
+		//TODO
 		switch ((int)msg) {
 		case (int)AUDIOPROC_MESSAGE_UPDATE_DAC:
 		{
@@ -242,6 +244,7 @@ static void* audioproc(void*)
 			break;
 		}
 		}
+		#endif
 	}
 
 	STACK_PAD_VAR(3);

@@ -2,8 +2,8 @@
 
 #include "jaudio/dummyrom.h"
 
-#include "dolphin/OS/OSCache.h"
-#include "dolphin/OS/OSMessage.h"
+#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSMessage.h"
 #include "dolphin/ar.h"
 #include <stddef.h>
 

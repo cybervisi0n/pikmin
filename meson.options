@@ -1,2 +1,4 @@
-option('build_target', type: 'combo', choices: ['gc', 'win64', 'linux'], value: 'gc', description: 'Target build platform', yield: true)
+option('build_target', type: 'combo', choices: ['gc', 'win32', 'win64', 'linux32', 'linux64'], value: 'gc', description: 'Target build platform', yield: true)
+option('address_sanitizer', type: 'boolean', value: false, description: 'Enable address sanitizer', yield: true)
+option('extract_assets', type: 'boolean', value: true, description: 'Use DTK tools to extract GPIE assets from the iso during the build.')
 option('pikmin_win32', type: 'boolean', value: false, description: 'Build the pikmin win32 version that was originally shipped on the disc')

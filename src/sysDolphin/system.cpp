@@ -917,7 +917,11 @@ void System::Initialise()
 	errCon = sysCon;
 	DVDInit();
 	if (!dvdStream.readBuffer) {
+		#ifdef GAMECUBE
 		dvdStream.readBuffer = new (0x20) u8[dvdStream.mSize];
+		#else
+		dvdStream.readBuffer = new u8[dvdStream.mSize];
+		#endif
 	}
 	!mHeapStart;
 	(gsys->getHeap(SYSHEAP_Sys)->getFree() / 1024.0f); // fakematch free size KB print?
@@ -952,7 +956,10 @@ void System::Initialise()
 	startLoading(nullptr, true, 0);
 
 	u32 audioHeapSize = 0x80000;
+	#ifdef GAMECUBE
+	//TODO: Audio
 	Jac_Start(new (0x20) u8[audioHeapSize], audioHeapSize, 0x800000, "/dataDir/SndData/");
+	#endif
 	Jac_AddDVDBuffer((u8*)mMatrices, mMatrixCount * sizeof(Matrix4f));
 
 	mBaseAramAllocator.init(0x800000, 0x800000);

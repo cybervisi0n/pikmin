@@ -8,7 +8,7 @@
 #endif
 
 #include "Colour.h"
-#include "Dolphin/gx.h"
+#include "dolphin/gx.h"
 #include "P2D/Pane.h"
 #include "P2D/Util.h"
 #include "Texture.h"

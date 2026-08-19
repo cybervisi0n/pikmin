@@ -54,7 +54,11 @@ f32 GetRandom_sf32()
 {
 	s32 rand  = GetRandom_s32();
 	s32 piece = rand & 0xFFFFFF;
+	#ifdef PCPORT
+	f32 frand = (f32)(piece) / 16777215.0f;
+	#else
 	f32 frand = f32(piece) / 16777215.0f;
+	#endif
 	if (rand < 0) {
 		frand = -frand;
 	}

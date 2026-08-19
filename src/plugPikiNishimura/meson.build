@@ -1,0 +1,47 @@
+plugpikinishimura_srcs = files(
+    'genBoss.cpp',
+    'Boss.cpp',
+    'BossAnimMgr.cpp',
+    'BossCnd.cpp',
+    'BossMgr.cpp',
+    'BossShapeObj.cpp',
+    'Spider.cpp',
+    'SpiderAi.cpp',
+    'SpiderLeg.cpp',
+    'Snake.cpp',
+    'SnakeAi.cpp',
+    'SnakeBody.cpp',
+    'Slime.cpp',
+    'SlimeAi.cpp',
+    'SlimeBody.cpp',
+    'SlimeCreature.cpp',
+    'King.cpp',
+    'KingAi.cpp',
+    'KingBody.cpp',
+    'Kogane.cpp',
+    'KoganeAi.cpp',
+    'Pom.cpp',
+    'PomAi.cpp',
+    'KingBack.cpp',
+    'Nucleus.cpp',
+    'NucleusAi.cpp',
+    'CoreNucleus.cpp',
+    'CoreNucleusAi.cpp',
+    'Mizu.cpp',
+    'MizuAi.cpp',
+    'nscalculation.cpp',
+    'RumbleData.cpp',
+    'HmRumbleMgr.cpp',
+    'HmRumbleSample.cpp',
+)
+
+
+plugpikinishimura_lib = static_library('plugPikiNishimura',
+    include_directories: project_includes,
+    pic: false,
+    dependencies: libporpoise_dep,
+    sources: [plugpikinishimura_srcs],
+    native: build_target != 'gc'
+)
+
+pikmin_libs += plugpikinishimura_lib

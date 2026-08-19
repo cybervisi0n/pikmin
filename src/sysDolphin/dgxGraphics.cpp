@@ -144,9 +144,15 @@ GColor GColors[1];
  */
 DGXGraphics::DGXGraphics(bool flag)
 {
+#ifdef GAMECUBE
 	mDefaultFifoBuffer = new (0x20) u8[kDefaultFifoSize];
 	mTempFifoBuffer    = new (0x20) u8[kTempFifoSize];
 	mDefaultDLBuffer   = new (0x20) u8[kDefaultDLSize];
+#else
+	mDefaultFifoBuffer = new u8[kDefaultFifoSize];
+	mTempFifoBuffer    = new u8[kTempFifoSize];
+	mDefaultDLBuffer   = new u8[kDefaultDLSize];
+#endif
 	mGpFifo            = GXInit(mDefaultFifoBuffer, kDefaultFifoSize);
 
 	if (flag) {
@@ -195,7 +201,11 @@ DGXGraphics::DGXGraphics(bool flag)
 	int backup = gsys->getHeap(gsys->mActiveHeapIdx)->mAllocType;
 	gsys->getHeap(gsys->mActiveHeapIdx)->setAllocType(AYU_STACK_GROW_UP);
 
+	#ifdef GAMECUBE
 	mDisplayBuffer = new (0x20) u8[sFrameSize];
+	#else
+	mDisplayBuffer = new u8[sFrameSize];
+	#endif
 
 #if defined(VERSION_GPIJ01) || defined(VERSION_DPIJ01_PIKIDEMO) || defined(VERSION_G98P01_PIKIDEMO)
 #else

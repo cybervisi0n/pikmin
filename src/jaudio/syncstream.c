@@ -294,7 +294,13 @@ void Init_StreamAudio(void)
  * @TODO: Documentation
  * @note UNUSED Size: 00003C
  */
-void Get_StreamAudio_Handle(void)
+void Get_StreamAudio_Handle(
+	#ifdef PCPORT
+	int dummy
+	#else
+	void
+	#endif
+)
 {
 	TRAP_UNIMPLEMENTED;
 }

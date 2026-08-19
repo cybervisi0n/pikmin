@@ -6,6 +6,15 @@ typedef unsigned int uint;
 
 #include <dolphin/types.h>
 
+#ifdef PCPORT
+#define LONG_TAU   6.2831854820251465
+#define TAU        6.2831855f
+#define PI         3.1415927f
+#define HALF_PI    1.5707964f
+#define THIRD_PI   1.0471976f
+#define QUARTER_PI 0.7853982f
+#endif
+
 // When compiling sysCore.dll under MSVC, we define the macro `SYSCORE_EXPORTS` to
 // seamlessly make the switch from `dllimport` to `dllexport` across the codebase.
 //

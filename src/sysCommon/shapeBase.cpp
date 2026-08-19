@@ -83,7 +83,11 @@ void DispList::read(RandomAccessStream& stream)
 
 	stream.skipPadding(0x20);
 
+	#ifdef GAMECUBE
 	mData = new (0x20) u8[mDataLength];
+	#else
+	mData = new u8[mDataLength];
+	#endif
 	stream.read(mData, mDataLength);
 }
 
@@ -2277,7 +2281,11 @@ void BaseShape::read(RandomAccessStream& stream)
 
 			mVertexCount = stream.readInt();
 			stream.skipPadding(0x20);
+			#ifdef GAMECUBE
 			mVertexList = reinterpret_cast<Vector3f*>(new (0x20) char[sizeof(Vector3f) * mVertexCount]); // hmm.
+			#else
+			mVertexList = reinterpret_cast<Vector3f*>(new char[sizeof(Vector3f) * mVertexCount]); // hmm.
+			#endif
 			for (int i = 0; i < mVertexCount; i++) {
 				mVertexList[i].read(stream);
 			}
@@ -2293,7 +2301,11 @@ void BaseShape::read(RandomAccessStream& stream)
 
 			mNormalCount = stream.readInt();
 			stream.skipPadding(0x20);
+			#ifdef GAMECUBE
 			mNormalList = reinterpret_cast<Vector3f*>(new (0x20) char[sizeof(Vector3f) * mNormalCount]); // hmm
+			#else
+			mNormalList = reinterpret_cast<Vector3f*>(new char[sizeof(Vector3f) * mNormalCount]); // hmm
+			#endif
 			for (int i = 0; i < mNormalCount; i++) {
 				mNormalList[i].read(stream);
 			}
@@ -2309,7 +2321,11 @@ void BaseShape::read(RandomAccessStream& stream)
 
 			mNBTCount = stream.readInt();
 			stream.skipPadding(0x20);
+			#ifdef GAMECUBE
 			mNBTList = reinterpret_cast<NBT*>(new (0x20) char[(sizeof(Vector3f) * mNBTCount * 3)]); // really
+			#else
+			mNBTList = reinterpret_cast<NBT*>(new char[(sizeof(Vector3f) * mNBTCount * 3)]); // really
+			#endif
 			for (int i = 0; i < mNBTCount; i++) {
 				reinterpret_cast<Vector3f*>(mNBTList)[3 * i].read(stream);
 				reinterpret_cast<Vector3f*>(mNBTList)[3 * i + 1].read(stream);
@@ -2327,7 +2343,11 @@ void BaseShape::read(RandomAccessStream& stream)
 
 			mVtxColorCount = stream.readInt();
 			stream.skipPadding(0x20);
+			#ifdef GAMECUBE
 			mVtxColorList = (Colour*)(new (0x20) GXColor[mVtxColorCount]);
+			#else
+			mVtxColorList = (Colour*)(new GXColor[mVtxColorCount]);
+			#endif
 			for (int i = 0; i < mVtxColorCount; i++) {
 				mVtxColorList[i].read(stream);
 			}
@@ -2351,7 +2371,11 @@ void BaseShape::read(RandomAccessStream& stream)
 
 			mTexCoordCounts[index] = stream.readInt();
 			stream.skipPadding(0x20);
+			#ifdef GAMECUBE
 			mTexCoordList[index] = new (0x20) Vector2f[mTexCoordCounts[index]];
+			#else
+			mTexCoordList[index] = new Vector2f[mTexCoordCounts[index]];
+			#endif
 
 			for (int i = 0; i < mTexCoordCounts[index]; i++) {
 				mTexCoordList[index][i].read(stream);

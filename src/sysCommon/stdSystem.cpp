@@ -66,7 +66,11 @@ void StdSystem::onceInit()
 #else
 	mMatrixCount = 0x2000;
 #endif
+#ifdef GAMECUBE
 	mMatrices = new (0x20) Matrix4f[mMatrixCount];
+#else
+	mMatrices = new Matrix4f[mMatrixCount];
+#endif
 }
 
 /**

@@ -135,7 +135,12 @@ static inline int getBit(BitBuffer* str)
 	int bit;
 
 	if ((bit = str->shift) < 0) {
+		#ifdef GAMECUBE
 		value = str->word = *((u32*)str->ptr)++;
+		#else
+		*((u32*)str->ptr) = *((u32*)str->ptr) + 1;
+		value = str->word = *((u32*)str->ptr);
+		#endif
 		bit               = 31;
 	} else {
 		value = str->word;
@@ -160,7 +165,12 @@ static inline s16 getByte(BitBuffer* str)
 	} else {
 		value = str->word;
 		value <<= 7 - bit;
+		#ifdef GAMECUBE
 		str->word = *((u32*)str->ptr)++;
+		#else
+		*((u32*)str->ptr) = *((u32*)str->ptr) + 1;
+		str->word = *((u32*)str->ptr);
+		#endif
 		value |= str->word >> (bit + 25);
 		bit += 24;
 	}

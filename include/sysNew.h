@@ -5,6 +5,7 @@
 #include "types.h"
 #include <stddef.h>
 
+#ifdef GAMECUBE
 inline void* operator new(size_t size)
 {
 	return System::alloc(size);
@@ -17,6 +18,7 @@ void* operator new(size_t size, int alignment);
 void* operator new[](size_t size, int alignment);
 void operator delete(void* ptr);
 void operator delete[](void* ptr);
+#endif
 
 // MetroWerks allowed programmers to take the address of an rvalue, but this is illegal
 // in C and C++.  This illegal operation effectively acts like a placement new on stack
