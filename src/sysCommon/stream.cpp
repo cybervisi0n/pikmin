@@ -46,9 +46,18 @@ short Stream::readShort()
  */
 f32 Stream::readFloat()
 {
+	#ifdef PCPORT
+	u32 f;
+	read(&f, sizeof(u32));
+	f = bswap_32(f);
+
+	f32 * fPtr = (f32*)&f;
+	return *fPtr;
+	#else
 	f32 f;
 	read(&f, sizeof(f32));
 	return f;
+	#endif
 }
 
 /**

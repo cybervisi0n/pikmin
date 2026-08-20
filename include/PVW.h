@@ -5,6 +5,9 @@
 #include "Matrix4f.h"
 #include "Vector.h"
 #include "types.h"
+#ifdef PCPORT
+#include "simulator/byteswap.h"
+#endif
 
 class Matrix4f;
 class RandomAccessStream;
@@ -101,6 +104,9 @@ public:
 	void read(RandomAccessStream& stream)
 	{
 		mSize = stream.readInt();
+		#ifdef PCPORT
+		mSize = bswap_32(mSize);
+		#endif
 
 		if (mSize != 0) {
 			mKeyframes = new PVWAnimKey1<T>[mSize];
@@ -120,6 +126,9 @@ public:
 	void read(RandomAccessStream& stream)
 	{
 		mSize = stream.readInt();
+		#ifdef PCPORT
+		mSize = bswap_32(mSize);
+		#endif
 
 		if (mSize != 0) {
 			mKeyframes = new PVWAnimKey3<T>[mSize];
@@ -307,6 +316,9 @@ public:
 	{
 		mAnimatedColor.read(input);
 		mAnimFrameCount = input.readInt();
+		#ifdef PCPORT
+		mAnimFrameCount = bswap_32(mAnimFrameCount);
+		#endif
 		mAnimSpeed      = input.readFloat();
 		mColorAnimData.mInfo.read(input);
 		mAlphaAnimData.mInfo.read(input);
@@ -403,6 +415,9 @@ public:
 		mKonstColors[2].read(input);
 		mKonstColors[3].read(input);
 		mTevStageCount = input.readInt();
+		#ifdef PCPORT
+		mTevStageCount = bswap_32(mTevStageCount);
+		#endif
 		if (mTevStageCount) {
 			mTevStages = new PVWTevStage[mTevStageCount];
 			for (int i = 0; i < mTevStageCount; i++) {

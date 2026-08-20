@@ -4,6 +4,9 @@
 #include "Age.h"
 #include "Stream.h"
 #include "types.h"
+#ifdef PCPORT
+#include "simulator/byteswap.h"
+#endif
 
 #define COLOUR_WHITE       Colour(255, 255, 255, 255)
 #define COLOUR_BLACK       Colour(0, 0, 0, 255)
@@ -87,6 +90,12 @@ public:
 		g = input.readShort();
 		b = input.readShort();
 		a = input.readShort();
+		#ifdef PCPORT
+		r = bswap_16(r);
+		g = bswap_16(g);
+		b = bswap_16(b);
+		a = bswap_16(a);
+		#endif
 	}
 
 	s16 r, g, b, a; // _00-_0A
