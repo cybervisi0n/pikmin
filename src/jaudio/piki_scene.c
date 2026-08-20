@@ -310,6 +310,8 @@ void Jac_SceneSetup(u32 sceneID, u32 stage)
 	}
 
 	// decide on which PIKMIN sound effect to play over the Nintendo logo
+	#ifdef GAMECUBE
+	//TODO audio
 	if (sceneID == SCENE_BootUp) {
 		do {
 			bgm = Jac_CheckBootOk();
@@ -329,6 +331,7 @@ void Jac_SceneSetup(u32 sceneID, u32 stage)
 			Jac_PlayOrimaSe(JACORIMA_Unk800C); // PIIIKMIIIIN (96.09375% chance)
 		}
 	}
+	#endif
 	Jac_SetProcessStatus(1);
 }
 

@@ -6,6 +6,9 @@
 #include "dolphin/gx.h"
 #include "GfxObject.h"
 #include "Stream.h"
+#ifdef PCPORT
+#include "simulator/byteswap.h"
+#endif
 
 class Texture;
 class TexImg;
@@ -81,14 +84,24 @@ struct BtiHeader {
 	{
 		mImageFormat       = input.readByte();
 		mIsAlphaEnabled    = input.readByte();
+		#ifdef PCPORT
+		mWidth             = bswap_16(input.readShort());
+		mHeight            = bswap_16(input.readShort());
+		#else
 		mWidth             = input.readShort();
 		mHeight            = input.readShort();
+		#endif
 		mWrapS             = input.readByte();
 		mWrapT             = input.readByte();
 		_08                = input.readByte();
 		_09                = input.readByte();
+		#ifdef PCPORT
+		mNumPaletteEntries = bswap_16(input.readShort());
+		mPaletteDataOffset = bswap_32(input.readInt());
+		#else
 		mNumPaletteEntries = input.readShort();
 		mPaletteDataOffset = input.readInt();
+		#endif
 		mIsMipmapEnabled   = input.readByte();
 		mIsEdgeLODEnabled  = input.readByte();
 		mDoClampLODBias    = input.readByte();
@@ -99,8 +112,13 @@ struct BtiHeader {
 		mMaxLOD            = input.readByte();
 		mNumImages         = input.readByte();
 		_19                = input.readByte();
+		#ifdef PCPORT
+		mLODBias           = bswap_16(input.readShort());
+		mImageDataOffset   = bswap_32(input.readInt());
+		#else
 		mLODBias           = input.readShort();
 		mImageDataOffset   = input.readInt();
+		#endif
 	}
 
 	u8 mImageFormat;        // _00

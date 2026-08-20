@@ -6,6 +6,9 @@
 #include "P2D/Window.h"
 #include "sysNew.h"
 #include "zen/ogSub.h"
+#ifdef PCPORT
+#include "simulator/byteswap.h"
+#endif
 
 /**
  * @todo: Documentation
@@ -90,6 +93,9 @@ void P2DScreen::makeHiearachyPanes(P2DPane* parent, RandomAccessStream* input, b
 	P2DPane* currPane = parent;
 	while (true) {
 		u16 paneType = input->readShort();
+		#ifdef PCPORT
+		paneType = bswap_16(paneType);
+		#endif
 		switch (paneType) {
 		case PANETYPE_Unk0:
 		{

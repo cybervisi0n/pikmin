@@ -7,6 +7,9 @@
 #if defined(BUGFIX)
 #include "sysNew.h"
 #endif
+#ifdef PCPORT
+#include "simulator/byteswap.h"
+#endif
 
 /**
  * @todo: Documentation
@@ -54,6 +57,9 @@ f32 Stream::readFloat()
 char* Stream::readString()
 {
 	int size = readInt();
+	#ifdef PCPORT
+	size = bswap_32(size);
+	#endif
 
 	char* str = new char[size + 1];
 	read(str, size);
@@ -76,6 +82,9 @@ void Stream::readString(char* dest, int size)
 void Stream::readString(String& str)
 {
 	int size = readInt();
+	#ifdef PCPORT
+	size = bswap_32(size);
+	#endif
 	if (str.mLength < size) {
 		str.init(size);
 	}

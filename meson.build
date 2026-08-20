@@ -16,6 +16,7 @@ libPorpoise_prj = subproject('libPorpoise',
 
 
 shared_args = [
+    '-DVERSION_GPIE01'
 ]
 
 if(build_target == 'gc') 

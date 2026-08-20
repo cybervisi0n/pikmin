@@ -12,11 +12,19 @@
 /// Packs 3-byte ID and parameter length (in bytes) into single 4-byte entry.
 #define PACK_ID_SIZE(id, size) ((id) & 0xFFFFFF00 | (size))
 
+#ifdef PCPORT
+/// Unpacks 3-byte ID from combined entry.
+#define UNPACK_ID(flag) ((flag) & 0xFFFFFF)
+
+/// Unpacks parameter size (length in bytes) from combined entry.
+#define UNPACK_SIZE(flag) (((flag) & 0xFF000000) >> 24)
+#else
 /// Unpacks 3-byte ID from combined entry.
 #define UNPACK_ID(flag) ((flag) & 0xFFFFFF00)
 
 /// Unpacks parameter size (length in bytes) from combined entry.
 #define UNPACK_SIZE(flag) ((flag) & 0xFF)
+#endif
 
 /// Terminator for parameter list file.
 #define FILE_TERMINATOR (-1)

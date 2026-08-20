@@ -9,6 +9,9 @@
 #include "sysNew.h"
 #include "system.h"
 #include <stddef.h>
+#ifdef PCPORT
+#include "simulator/byteswap.h"
+#endif
 
 /**
  * @todo: Documentation
@@ -574,9 +577,16 @@ void StdSystem::loadBundle(immut char* pPath, bool loadWithCache)
 	}
 
 	int fileCount = fs->readInt();
+	#ifdef PCPORT
+	fileCount = bswap_32(fileCount);
+	#endif
 	for (int i = 0; i < fileCount; i++) {
 		int type = fs->readInt();
 		int size = fs->readInt();
+		#ifdef PCPORT
+		type = bswap_32(type);
+		size = bswap_32(size);
+		#endif
 
 		String path(0);
 		fs->readString(path);
