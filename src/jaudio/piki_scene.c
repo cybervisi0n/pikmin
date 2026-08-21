@@ -150,6 +150,11 @@ void Jac_SceneSetup(u32 sceneID, u32 stage)
 	u32 bgm2;
 	OSTick tick;
 
+	#ifdef PCPORT
+	// TODO: get audio stuff working
+	return;
+	#endif
+
 	BOOL dvd = FALSE;
 	Jac_SetProcessStatus(0);
 
