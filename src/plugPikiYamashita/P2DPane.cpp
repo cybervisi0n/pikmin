@@ -189,17 +189,10 @@ P2DPane::P2DPane(P2DPane* parent, RandomAccessStream* input, u16 paneType)
 	mTagName = bswap_32(mTagName);
 	#endif
 
-	#ifdef PCPORT
-	mBounds.mMinX = (int)bswap_16(input->readShort());
-	mBounds.mMinY = (int)bswap_16(input->readShort());
-	mBounds.mMaxX = mBounds.mMinX + (int)bswap_16(input->readShort());
-	mBounds.mMaxY = mBounds.mMinY + (int)bswap_16(input->readShort());
-	#else
 	mBounds.mMinX = (int)input->readShort();
 	mBounds.mMinY = (int)input->readShort();
 	mBounds.mMaxX = mBounds.mMinX + (int)input->readShort();
 	mBounds.mMaxY = mBounds.mMinY + (int)input->readShort();
-	#endif
 
 	if (parent) {
 		parent->mPaneTree.appendChild(&mPaneTree);

@@ -337,16 +337,9 @@ void System::parseArchiveDirectory(immut char* arcPath, immut char* dirPath)
 	if (file) {
 		file->readInt();
 		u32 num = file->readInt();
-		#ifdef PCPORT
-		num = bswap_32(num);
-		#endif
 		for (int i = 0; i < num; i++) {
 			u32 b = file->readInt();
 			u32 c = file->readInt();
-			#ifdef PCPORT
-			b = bswap_32(b);
-			c = bswap_32(c);
-			#endif
 			String str(0);
 			file->readString(str);
 

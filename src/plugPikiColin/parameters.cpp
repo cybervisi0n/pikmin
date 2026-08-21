@@ -130,6 +130,10 @@ void Parameters::read(RandomAccessStream& input)
 
 	while (true) {
 		int entryHeader = input.readInt();
+		#ifdef PCPORT
+		// Byteswap the entry header again, this is actually meant to be read as big endian
+		entryHeader = bswap_32(entryHeader);
+		#endif
 		if (entryHeader == FILE_TERMINATOR) {
 			// end of file reached
 			break;

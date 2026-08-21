@@ -63,21 +63,12 @@ P2DTextBox::P2DTextBox(P2DPane* pane, RandomAccessStream* ramStream, u16 param3)
 		mLeading    = (int)ramStream->readShort();
 		mFontWidth  = (int)ramStream->readShort();
 		mFontHeight = (int)ramStream->readShort();
-		#ifdef PCPORT
-		mSpacing = bswap_16(mSpacing);
-		mLeading = bswap_16(mLeading);
-		mFontWidth = bswap_16(mFontWidth);
-		mFontHeight = bswap_16(mFontHeight);
-		#endif
 	} else {
 		PRINT("flag is not found.\n");
 		ERROR("blo data is old");
 	}
 
 	s16 length = ramStream->readShort();
-	#ifdef PCPORT
-	length = bswap_16(length);
-	#endif
 
 	mText = new char[length + 1];
 	ramStream->read(mText, length);

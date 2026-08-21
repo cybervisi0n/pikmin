@@ -18,6 +18,9 @@ int Stream::readInt()
 {
 	int i;
 	read(&i, sizeof(int));
+	#ifdef PCPORT
+	i = bswap_32(i);
+	#endif
 	return i;
 }
 
@@ -38,6 +41,9 @@ short Stream::readShort()
 {
 	short s;
 	read(&s, sizeof(short));
+	#ifdef PCPORT
+	s = bswap_16(s);
+	#endif
 	return s;
 }
 
@@ -66,9 +72,6 @@ f32 Stream::readFloat()
 char* Stream::readString()
 {
 	int size = readInt();
-	#ifdef PCPORT
-	size = bswap_32(size);
-	#endif
 
 	char* str = new char[size + 1];
 	read(str, size);
@@ -91,9 +94,6 @@ void Stream::readString(char* dest, int size)
 void Stream::readString(String& str)
 {
 	int size = readInt();
-	#ifdef PCPORT
-	size = bswap_32(size);
-	#endif
 	if (str.mLength < size) {
 		str.init(size);
 	}

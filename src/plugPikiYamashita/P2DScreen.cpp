@@ -93,9 +93,6 @@ void P2DScreen::makeHiearachyPanes(P2DPane* parent, RandomAccessStream* input, b
 	P2DPane* currPane = parent;
 	while (true) {
 		u16 paneType = input->readShort();
-		#ifdef PCPORT
-		paneType = bswap_16(paneType);
-		#endif
 		switch (paneType) {
 		case PANETYPE_Unk0:
 		{

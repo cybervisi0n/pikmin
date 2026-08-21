@@ -83,11 +83,6 @@ void DispList::read(RandomAccessStream& stream)
 	mFlags      = stream.readInt();
 	mFaceCount  = stream.readInt();
 	mDataLength = stream.readInt();
-	#ifdef PCPORT
-	mFlags = bswap_32(mFlags);
-	mFaceCount = bswap_32(mFaceCount);
-	mDataLength = bswap_32(mDataLength);
-	#endif
 
 	stream.skipPadding(0x20);
 
@@ -106,9 +101,6 @@ void DispList::read(RandomAccessStream& stream)
 void MtxGroup::read(RandomAccessStream& stream)
 {
 	mDepLength = stream.readInt();
-	#ifdef PCPORT
-	mDepLength = bswap_32(mDepLength);
-	#endif
 	if (mDepLength) {
 		mDepList = new int[mDepLength];
 		for (int i = 0; i < mDepLength; i++) {
@@ -117,9 +109,6 @@ void MtxGroup::read(RandomAccessStream& stream)
 	}
 
 	mDispLength = stream.readInt();
-	#ifdef PCPORT
-	mDispLength = bswap_32(mDispLength);
-	#endif
 	if (mDispLength) {
 		mDispList = new DispList[mDispLength];
 		for (int i = 0; i < mDispLength; i++) {
@@ -218,9 +207,6 @@ void Joint::read(RandomAccessStream& stream)
 	mTranslation.read(stream);
 
 	mMatPolyCount = stream.readInt();
-	#ifdef PCPORT
-	mMatPolyCount = bswap_32(mMatPolyCount);
-	#endif
 	mMatPoly.initCore("");
 	for (int matPolyCount = 0; matPolyCount < mMatPolyCount; matPolyCount++) {
 		MatPoly* mPoly    = new MatPoly();
@@ -2278,10 +2264,6 @@ void BaseShape::read(RandomAccessStream& stream)
 		u32 chunkStartPosition = stream.getPosition();
 		u32 chunkType          = stream.readInt();
 		u32 chunkLength        = stream.readInt();
-		#ifdef PCPORT
-		chunkType = bswap_32(chunkType);
-		chunkLength = bswap_32(chunkLength);
-		#endif
 
 		if (chunkStartPosition & 0x1F) {
 			ERROR("chunk start not on boundary %08x!\n", chunkStartPosition);
@@ -2293,9 +2275,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			stream.skipPadding(0x20);
 			int unused  = stream.readInt();
 			mShapeFlags = stream.readInt();
-			#ifdef PCPORT
-			mShapeFlags = bswap_32(mShapeFlags);
-			#endif
 			stream.skipPadding(0x20);
 			break;
 		}
@@ -2304,9 +2283,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mVertexCount = stream.readInt();
-			#ifdef PCPORT
-			mVertexCount = bswap_32(mVertexCount);
-			#endif
 			stream.skipPadding(0x20);
 			#ifdef GAMECUBE
 			mVertexList = reinterpret_cast<Vector3f*>(new (0x20) char[sizeof(Vector3f) * mVertexCount]); // hmm.
@@ -2327,9 +2303,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mNormalCount = stream.readInt();
-			#ifdef PCPORT
-			mNormalCount = bswap_32(mNormalCount);
-			#endif
 			stream.skipPadding(0x20);
 			#ifdef GAMECUBE
 			mNormalList = reinterpret_cast<Vector3f*>(new (0x20) char[sizeof(Vector3f) * mNormalCount]); // hmm
@@ -2350,9 +2323,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mNBTCount = stream.readInt();
-			#ifdef PCPORT
-			mNBTCount = bswap_32(mNBTCount);
-			#endif
 			stream.skipPadding(0x20);
 			#ifdef GAMECUBE
 			mNBTList = reinterpret_cast<NBT*>(new (0x20) char[(sizeof(Vector3f) * mNBTCount * 3)]); // really
@@ -2375,9 +2345,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mVtxColorCount = stream.readInt();
-			#ifdef PCPORT
-			mVtxColorCount = bswap_32(mVtxColorCount);
-			#endif
 			stream.skipPadding(0x20);
 			#ifdef GAMECUBE
 			mVtxColorList = (Colour*)(new (0x20) GXColor[mVtxColorCount]);
@@ -2406,9 +2373,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			int index  = chunkType - BaseShapeChunk::TexCoord0;
 
 			mTexCoordCounts[index] = stream.readInt();
-			#ifdef PCPORT
-			mTexCoordCounts[index] = bswap_32(mTexCoordCounts[index]);
-			#endif
 			stream.skipPadding(0x20);
 			#ifdef GAMECUBE
 			mTexCoordList[index] = new (0x20) Vector2f[mTexCoordCounts[index]];
@@ -2431,9 +2395,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mTextureCount = stream.readInt();
-			#ifdef PCPORT
-			mTextureCount = bswap_32(mTextureCount);
-			#endif
 			stream.skipPadding(0x20);
 			mTextureList = new TexImg[mTextureCount];
 			for (int i = 0; i < mTextureCount; i++) {
@@ -2450,9 +2411,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mTexAttrCount = stream.readInt();
-			#ifdef PCPORT
-			mTexAttrCount = bswap_32(mTexAttrCount);
-			#endif
 			stream.skipPadding(0x20);
 			mTexAttrList = new TexAttr[mTexAttrCount];
 			for (int i = 0; i < mTexAttrCount; i++) {
@@ -2470,10 +2428,6 @@ void BaseShape::read(RandomAccessStream& stream)
 
 			mMaterialCount = stream.readInt();
 			mTevInfoCount  = stream.readInt();
-			#ifdef PCPORT
-			mMaterialCount = bswap_32(mMaterialCount);
-			mTevInfoCount = bswap_32(mTevInfoCount);
-			#endif
 
 			stream.skipPadding(0x20);
 
@@ -2507,9 +2461,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mVtxMatrixCount = stream.readInt();
-			#ifdef PCPORT
-			mVtxMatrixCount = bswap_32(mVtxMatrixCount);
-			#endif
 			stream.skipPadding(0x20);
 			mVtxMatrixList = new VtxMatrix[mVtxMatrixCount];
 			for (int i = 0; i < mVtxMatrixCount; i++) {
@@ -2526,9 +2477,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mEnvelopeCount = stream.readInt();
-			#ifdef PCPORT
-			mEnvelopeCount = bswap_32(mEnvelopeCount);
-			#endif
 			stream.skipPadding(0x20);
 			mEnvelopeList = new Envelope[mEnvelopeCount];
 			for (int i = 0; i < mEnvelopeCount; i++) {
@@ -2545,9 +2493,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mMeshCount = stream.readInt();
-			#ifdef PCPORT
-			mMeshCount = bswap_32(mMeshCount);
-			#endif
 			stream.skipPadding(0x20);
 			mMeshList = new Mesh[mMeshCount];
 			for (int i = 0; i < mMeshCount; i++) {
@@ -2564,9 +2509,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mJointCount = stream.readInt();
-			#ifdef PCPORT
-			mJointCount = bswap_32(mJointCount);
-			#endif
 			stream.skipPadding(0x20);
 			mJointList = new Joint[mJointCount];
 			for (int meshIdx = 0; meshIdx < mMeshCount; meshIdx++) {
@@ -2621,9 +2563,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			freeBefore = gsys->getHeap(SYSHEAP_App)->getFree();
 
 			mJointCount = stream.readInt();
-			#ifdef PCPORT
-			mJointCount = bswap_32(mJointCount);
-			#endif
 			stream.skipPadding(0x20);
 			for (int i = 0; i < mJointCount; i++) {
 				String name(0);
@@ -2640,10 +2579,6 @@ void BaseShape::read(RandomAccessStream& stream)
 
 			mTriCount      = stream.readInt();
 			mBaseRoomCount = stream.readInt();
-			#ifdef PCPORT
-			mTriCount = bswap_32(mTriCount);
-			mBaseRoomCount = bswap_32(mBaseRoomCount);
-			#endif
 			stream.skipPadding(0x20);
 			mRoomInfoList = new RoomInfo[mBaseRoomCount];
 
@@ -2675,19 +2610,12 @@ void BaseShape::read(RandomAccessStream& stream)
 
 			mCollGroups          = new CollGroup*[mGridSizeX * mGridSizeY];
 			int groupCount       = stream.readInt();
-			#ifdef PCPORT
-			groupCount = bswap_32(groupCount);
-			#endif
 			int maxTrisPerGroup  = 0;
 			CollGroup* tmpGroups = new CollGroup[groupCount];
 
 			for (int i = 0; i < groupCount; i++) {
 				tmpGroups[i].mFarCulledTriCount = stream.readShort();
 				tmpGroups[i].mTriCount          = stream.readShort();
-				#ifdef PCPORT
-				tmpGroups[i].mFarCulledTriCount = bswap_16(tmpGroups[i].mFarCulledTriCount);
-				tmpGroups[i].mTriCount = bswap_16(tmpGroups[i].mTriCount);
-				#endif
 				tmpGroups[i].mTriangleList      = new CollTriInfo*[tmpGroups[i].mTriCount];
 
 				if (tmpGroups[i].mTriCount > maxTrisPerGroup) {
@@ -2696,9 +2624,6 @@ void BaseShape::read(RandomAccessStream& stream)
 
 				for (int j = 0; j < tmpGroups[i].mTriCount; j++) {
 					int idx                       = stream.readInt();
-					#ifdef PCPORT
-					idx = bswap_32(idx);
-					#endif
 					tmpGroups[i].mTriangleList[j] = &mTriList[idx];
 				}
 
@@ -2720,9 +2645,6 @@ void BaseShape::read(RandomAccessStream& stream)
 			for (int row = 0; row < mGridSizeY; row++) {
 				for (int col = 0; col < mGridSizeX; col++) {
 					int groupIdx = stream.readInt();
-					#ifdef PCPORT
-					groupIdx = bswap_32(groupIdx);
-					#endif
 					if (groupIdx == -1) {
 						mCollGroups[row * mGridSizeX + col] = group;
 					} else {

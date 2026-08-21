@@ -460,11 +460,6 @@ void PVWTextureData::read(RandomAccessStream& stream)
 	mTranslationY    = stream.readFloat();
 	mPivotX          = stream.readFloat();
 	mPivotY          = stream.readFloat();
-	#ifdef PCPORT
-	mSourceAttrIndex = bswap_32(mSourceAttrIndex);
-	mAnimationFactor = bswap_32(mAnimationFactor);
-	mTotalFrameCount = bswap_32(mTotalFrameCount);
-	#endif
 
 	mScaleInfo.mInfo.read(stream);
 	mRotationInfo.mInfo.read(stream);
@@ -495,9 +490,6 @@ void PVWTextureInfo::read(RandomAccessStream& input)
 	mUseScale = input.readInt();
 	mScale.read(input);
 	mTexGenDataCount = input.readInt();
-	#ifdef PCPORT
-	mTexGenDataCount = bswap_32(mTexGenDataCount);
-	#endif
 	if (mTexGenDataCount) {
 		mTexGenData = new PVWTexGenData[mTexGenDataCount];
 
@@ -508,9 +500,6 @@ void PVWTextureInfo::read(RandomAccessStream& input)
 
 	mTevStageCount    = 0;
 	mTextureDataCount = input.readInt();
-	#ifdef PCPORT
-	mTextureDataCount = bswap_32(mTextureDataCount);
-	#endif
 	if (mTextureDataCount) {
 		mTextureData = new PVWTextureData[mTextureDataCount];
 
@@ -560,10 +549,6 @@ void Material::read(RandomAccessStream& input)
 {
 	mFlags        = input.readInt();
 	mTextureIndex = input.readInt();
-	#ifdef PCPORT
-	mFlags = bswap_32(mFlags);
-	mTextureIndex = bswap_32(mTextureIndex);
-	#endif
 	colour().read(input);
 
 	if (mFlags & MATFLAG_PVW) {
@@ -1080,9 +1065,6 @@ void TexImg::read(RandomAccessStream& stream)
 	_     = stream.readInt();
 
 	mDataSize    = stream.readInt();
-	#ifdef PCPORT
-	mDataSize = bswap_32(mDataSize);
-	#endif
 	#ifdef GAMECUBE
 	mTextureData = new (0x20) u8[mDataSize];
 	#else

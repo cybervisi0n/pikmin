@@ -90,12 +90,6 @@ public:
 		g = input.readShort();
 		b = input.readShort();
 		a = input.readShort();
-		#ifdef PCPORT
-		r = bswap_16(r);
-		g = bswap_16(g);
-		b = bswap_16(b);
-		a = bswap_16(a);
-		#endif
 	}
 
 	s16 r, g, b, a; // _00-_0A
