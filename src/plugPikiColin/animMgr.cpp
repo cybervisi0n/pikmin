@@ -354,7 +354,10 @@ void AnimMgr::loadAnims(immut char* animPath, immut char* bundlePath)
 			sprintf(finalBundlePath, bundlePath ? bundlePath : mModel->mName);
 
 			if (!bundlePath) {
+				#ifdef GAMECUBE
+				// Dont run this on the pc port because it is just buggy stack corruption
 				sprintf(&finalAnimPath[strlen(finalBundlePath) + 253], "anm");
+				#endif
 			}
 
 			gsys->loadBundle(finalBundlePath, false);
