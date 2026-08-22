@@ -62,8 +62,13 @@
 #define PRINT
 #define ERROR _Error
 #else
+#ifdef PCPORT
+#define PRINT OSReport
+#define ERROR OSReport
+#else
 #define PRINT
 #define ERROR
+#endif
 #endif
 
 // In the DLL, there are five global BOOLs (only three are actually used) consistently used to control `PRINT` statements belonging
