@@ -71,6 +71,7 @@ void* System::alloc(size_t size)
 	return result;
 }
 
+#ifdef GAMECUBE
 /**
  * @todo: Documentation
  * @note UNUSED Size: 000044 (Matching by size)
@@ -105,3 +106,4 @@ void operator delete(void*)
 void operator delete[](void*)
 {
 }
+#endif
