@@ -61,10 +61,12 @@ KIO::KIO()
 void KIO::initialise()
 {
 	HIOEnumDevices(hioEnumCallback);
+	#ifdef GAMECUBE
 	if (HIOInit(mChannel, hioCallback) == FALSE) {
 		mIsReady = false;
 		return;
 	}
+	#endif
 
 	mIsReady = true;
 	readMailbox();
