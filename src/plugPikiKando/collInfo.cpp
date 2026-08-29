@@ -11,6 +11,9 @@
 #include "timers.h"
 
 #include "DebugLog.h"
+#ifdef PCPORT
+#include <simulator/byteswap.h>
+#endif
 
 /**
  * @note UNUSED Size: 00009C
@@ -848,6 +851,9 @@ CollPart* CollInfo::getBoundingSphere()
  */
 CollPart* CollInfo::getSphere(u32 id)
 {
+	#ifdef PCPORT
+	id = bswap_32(id);
+	#endif
 	int idx = getId2Index(id);
 	if (idx == -1) {
 		ID32 badID(id);

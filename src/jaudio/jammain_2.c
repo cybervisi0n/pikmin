@@ -1740,6 +1740,10 @@ void Jam_PauseTrack(seqp_* track, u8 recursive)
 
 	size_t* REF_i;
 
+	#ifdef PCPORT
+	return;
+	#endif
+
 	track->isPaused = TRUE;
 	if (track->pauseStatus & 0x01) {
 		track->updateFlags |= OuterParamFlag_Volume;
@@ -1777,6 +1781,9 @@ void Jam_UnPauseTrack(seqp_* track, u8 recursive)
 	jc_* pjVar1;
 
 	size_t* REF_i;
+	#ifdef PCPORT
+	return;
+	#endif
 
 	track->isPaused = FALSE;
 	track->updateFlags |= OuterParamFlag_Volume;

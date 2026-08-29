@@ -4,6 +4,9 @@
 #include "DebugLog.h"
 #include "Stream.h"
 #include "sysNew.h"
+#ifdef PCPORT
+#include <simulator/byteswap.h>
+#endif
 
 /**
  * @todo: Documentation
@@ -106,7 +109,11 @@ void ID32::operator=(u32 other)
  */
 bool ID32::operator==(u32 other) immut
 {
+	#ifdef PCPORT
+	return (mId == other) || (mId == bswap_32(other));
+	#else
 	return mId == other;
+	#endif
 }
 
 /**
