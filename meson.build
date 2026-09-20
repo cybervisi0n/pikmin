@@ -13,6 +13,7 @@ libPorpoise_prj = subproject('libPorpoise',
         'dvd_company=01'
     ])
 
+libporpoise_dep = dependency('libPorpoise')
 
 
 shared_args = [
@@ -22,7 +23,7 @@ shared_args = [
 if(build_target == 'gc') 
 shared_args += ['-DGAMECUBE']
 else
-shared_args += ['-DPCPORT', '-fpermissive']
+shared_args += ['-DPCPORT', '-fpermissive', '-w']
 endif
 
 if(get_option('pikmin_win32') == true)
@@ -76,9 +77,6 @@ if(get_option('address_sanitizer') == true)
 endif
 project_includes = include_directories('include', './GPIE01_00/include')
 pikmin_libs = []
-
-
-libporpoise_dep = dependency('libPorpoise')
 
 subdir('src')
 
