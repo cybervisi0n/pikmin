@@ -1065,6 +1065,11 @@ void* loadFunc(void* idler)
 			break;
 		}
 
+		#ifdef PCPORT
+		//TODO: Turned off loading screens due to gx race conditions for now
+		continue;
+		#endif
+
 		if (gsys->mIsRendering) {
 			continue;
 		}

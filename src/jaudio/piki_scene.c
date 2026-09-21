@@ -355,6 +355,12 @@ void Jac_SceneExit(u32 nextSceneID, u32 stage)
 		return;
 	}
 
+	#ifdef PCPORT
+	if(current_scene >= 14) {
+		current_scene = 0;
+	}
+	#endif
+
 	Jac_SetProcessStatus(2);
 	fade     = tbl_scene_to_fadetime[current_scene];
 	REF_fade = &fade;

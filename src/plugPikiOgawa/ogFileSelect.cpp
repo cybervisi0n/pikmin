@@ -770,6 +770,11 @@ zen::ogScrFileSelectMgr::ogScrFileSelectMgr()
 	mDeleteCursorPicture = static_cast<P2DPicture*>(mBlackOverlayScreen->search('blck', true));
 	mDeleteCursorPicture->setAlpha(255);
 
+	#ifdef PCPORT
+	// Fix uninitialized variable
+	mCurrSlotIdx = 0;
+	#endif
+
 	getPane_FileTop1();
 	getPane_FileTop2();
 	getPane_FileIcon();
