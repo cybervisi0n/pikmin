@@ -123,7 +123,14 @@ static int sFirstFrame = 4;
 #endif
 static int kDefaultFifoSize = 0x60000;
 static int kTempFifoSize    = 0x10000;
+#ifdef PCPORT
+//TODO: figure out why the dl buffer fills up on pc
+//Possible cause is that we are somehow generating more gx fifo bytes than expected
+//Verify its not filling up on GC
+static int kDefaultDLSize   = 0x30000;
+#else
 static int kDefaultDLSize   = 0x20000;
+#endif
 static bool sendMtxIndx     = true;
 static bool sendTxUVIndx[8] = { true, false, false, false, false, false, false, false };
 
