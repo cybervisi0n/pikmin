@@ -431,6 +431,11 @@ Navi::Navi(CreatureProp* props, int naviID)
 {
 	mLowerMotionCooldown = 4;
 
+#ifdef PCPORT
+	// Fix uninitialized variable
+	mGoalItem = nullptr;
+#endif
+
 #if defined(PIKMIN_WIN32)
 	mLociCount = 32;
 	mLoci      = new Locus[mLociCount];
