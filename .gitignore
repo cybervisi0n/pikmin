@@ -64,6 +64,8 @@ dtk-tools/
 
 # Subprojects
 subprojects/libPorpoise/
+subprojects/tracy/
+subprojects/tracy.wrap
 
 # Meson files
 subprojects/.wraplock

@@ -161,6 +161,9 @@ void MovieInfo::refresh(Graphics&)
 MoviePlayer::MoviePlayer()
 {
 	mCamTransitionFactor = 0.0f;
+	#ifdef PCPORT
+	mIsPaused = false;
+	#endif
 }
 
 /**
