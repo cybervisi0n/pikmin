@@ -1677,7 +1677,9 @@ void MapMgr::postrefresh(Graphics& gfx)
 		gfx.setPrimEnv(stack_new(Colour)(255, 255, 255, gfx.mCamera->mBlurAlpha), nullptr);
 
 		// render multi-texture blend (blur)
+		#ifdef GAMECUBE
 		gfx.blatRectangle(AREA_FULL_SCREEN(gfx));
+		#endif
 
 		// clean up graphics settings + store current blur result for use next frame
 		gfx.setCBlending(blend);
@@ -1725,15 +1727,19 @@ void MapMgr::postrefresh(Graphics& gfx)
 		GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
 #endif
 		gfx.setColour(Colour(160, 160, 160, (int)(mCurrDesaturationLevel * 255.0f)), true);
+#ifdef GAMECUBE
 		gfx.useTexture(mBlurResultTexture, GX_TEXMAP0);
 		gfx.drawRectangle(AREA_FULL_SCREEN(gfx), RectArea(0, 0, mBlurResultTexture->mWidth, mBlurResultTexture->mHeight), nullptr);
+#endif
 
 #if PIKI_USE_DGX
 		GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
 #endif
 		gfx.setColour(Colour(0, 0, 0, int(mCurrFadeLevel * 255.0f)), true);
+#ifdef GAMECUBE
 		gfx.useTexture(nullptr, GX_TEXMAP0);
 		gfx.fillRectangle(AREA_FULL_SCREEN(gfx));
+#endif
 	}
 
 	// draw debug triangle outlines
