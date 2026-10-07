@@ -11,6 +11,9 @@
 #include "UtilityKando.h"
 #include "bugprint.h"
 #include "sysNew.h"
+#ifdef PCPORT
+#include "simulator/byteswap.h"
+#endif
 
 /**
  * @todo: Documentation
@@ -1056,7 +1059,11 @@ int RouteMgr::id2idx(u32 id)
 	}
 
 	for (int i = 0; i < mRouteCount; i++) {
-		if (mRouteGroupIDs[i] == id) {
+		if (mRouteGroupIDs[i] == id
+#ifdef PCPORT
+		 || bswap_32(mRouteGroupIDs[i]) == id
+#endif
+		) {
 			return i;
 		}
 	}

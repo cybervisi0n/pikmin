@@ -10,6 +10,9 @@
 #include "gameflow.h"
 #include "sysNew.h"
 #include "teki.h"
+#ifdef PCPORT
+#include "simulator/byteswap.h"
+#endif
 
 /**
  * @todo: Documentation
@@ -60,6 +63,9 @@ static u32 readID(RandomAccessStream& input)
 	id[2]  = input.readByte();
 	id[1]  = input.readByte();
 	id[0]  = input.readByte();
+	#ifdef PCPORT
+	outID = bswap_32(outID);
+	#endif
 	return outID;
 }
 

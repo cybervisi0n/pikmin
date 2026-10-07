@@ -380,9 +380,11 @@ void ResultFlags::dump()
 		STACK_PAD_INLINE(1);
 #endif
 
+		#ifdef GAMECUBE
 		// So as a result of all that, this PRINT contains brazen (but stripped) undefined behavior (`strs[3]`) in the retail game.
 		PRINT(" ENUM_RESULT_%s_G%02d_P00 = %s : %d pages\n", strs[3], p++, strs[getFlag(info.mScreenId)],
 		      (flagTable[i + 1].mScreenId == -1) ? 1 : flagTable[i + 1].mScreenId - info.mScreenId);
+		#endif
 	}
 	PRINT("*************************************************\n");
 }

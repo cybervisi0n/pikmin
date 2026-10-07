@@ -356,6 +356,9 @@ public:
 		mTriCount              = 0;
 		mJointIndex            = 0;
 		mFarCulledTriDistances = nullptr;
+		#ifdef PCPORT
+		mFarCulledTriCount = 0;
+		#endif
 	}
 
 	u8 _unused00[0x4];            ///< _00, unknown/unused.

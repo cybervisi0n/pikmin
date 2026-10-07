@@ -126,6 +126,7 @@ struct CardSelectSetupSection : public Node {
 						gameflow.mPlayState.Initialise();
 
 						// next subsection will be the new game intro cutscene
+						// NOTES: to skip the intro cutscene, change this to ONEPLAYER_NewPikiGame
 						gameflow.mNextOnePlayerSectionID = ONEPLAYER_IntroGame;
 					}
 
@@ -137,6 +138,7 @@ struct CardSelectSetupSection : public Node {
 						sprintf(flowCont.mDoorStageFilePath, "%s", stage->mFileName);
 						// day one is locked at 2:48pm
 						gameflow.mWorldClock.setTime(TUTORIAL_TIME_OF_DAY);
+						// NOTES: to skip the intro cutscene, change this to ONEPLAYER_NewPikiGame
 						gameflow.mNextOnePlayerSectionID = ONEPLAYER_IntroGame;
 					}
 				} else {

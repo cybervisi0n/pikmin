@@ -479,8 +479,10 @@ void Animator::startAnim(int playState, int animID, int startKeyFrameIdx, int en
 
 	// check frame counter is within bounds for this animation
 	if (mAnimationCounter < 0.0f || mAnimationCounter >= mAnimInfo->mData->mTotalFrameCount) {
+		#ifdef GAMECUBE
 		PRINT("StartAnim: name = %s : numFrames = %d\n", mAnimInfo->mName, mAnimInfo->mData->mTotalFrameCount);
 		ERROR("StartAnim: initialising with illegal counter value!! : %f\n", mAnimationCounter);
+		#endif
 		mAnimationCounter = 0.0f;
 	}
 

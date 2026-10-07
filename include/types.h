@@ -148,12 +148,7 @@ typedef unsigned int uint;
 // original codebase is represented as closely as possible, warts and all, but portability (MWCC 1.2.5 was the *last* version of MWCC
 // to allow this non-standard behavior) is also desireable.  Luckily, almost all const-incorrectness in the codebase is merely a result
 // of apathy, so this cv-qualifier macro exists to document and fix the places that could have been const-correct but weren't.
-#define immut TERNARY_BUILD_MATCHING(MACRO_NOTHING, const)
-
-// Nakata had a bad habit of writing mutable references to lifetime-extended rvalues when a value type would have sufficed, so this macro
-// is named for him.  MWCC 1.2.5 sometimes optimizes `Type foo = Type(...)` *really* poorly compared to `Type foo(...)`, so unless you are
-// using a different compiler, this const-correctness fix might generate worse code.
-#define NRef TERNARY_BUILD_MATCHING(&, MACRO_NOTHING)
+//#define immut TERNARY_BUILD_MATCHING(MACRO_NOTHING, const)
 
 // In early revisions of Pikmin 1, Ogawa was confused on which enum he was supposed to use for `SeSystem::playSysSe`/`stopSysSe`.
 #if defined(VERSION_PIKIDEMO) || defined(VERSION_GPIJ01)
@@ -186,7 +181,7 @@ typedef unsigned int uint;
 #if defined(__MWERKS__) && defined(BUILD_MATCHING)
 #define BUMP_REGISTER(reg) { asm { mr reg, reg } }((void)0)
 #else
-#define BUMP_REGISTER(reg) ((void)0)
+//#define BUMP_REGISTER(reg) ((void)0)
 #endif
 
 // clang-format off
@@ -214,7 +209,7 @@ typedef unsigned int uint;
 #if defined(__MWERKS__) && defined(BUILD_MATCHING)
 #define FORCE_DONT_INLINE REPEAT16(REPEAT10((void*)0))
 #else
-#define FORCE_DONT_INLINE ((void)0)
+//#define FORCE_DONT_INLINE ((void)0)
 #endif
 
 // Add an unused local variable to pad the stack by some number of words
@@ -224,7 +219,7 @@ typedef unsigned int uint;
 		int pad[n];      \
 	} while (0)
 #else
-#define STACK_PAD_VAR(n) ((void)0)
+//#define STACK_PAD_VAR(n) ((void)0)
 #endif
 
 // Create a temporary struct to pad the stack by some number of words
@@ -235,7 +230,7 @@ typedef unsigned int uint;
 		{                        \
 		}
 #else
-#define STACK_PAD_STRUCT(n) ((void)0)
+//#define STACK_PAD_STRUCT(n) ((void)0)
 #endif
 
 // Add an unused variable in an inline function to pad the stack by some number of words
@@ -246,14 +241,14 @@ inline void padStack(void)
 }
 #define STACK_PAD_INLINE(n) REPEAT(padStack(), n)
 #else
-#define STACK_PAD_INLINE(n) ((void)0)
+//#define STACK_PAD_INLINE(n) ((void)0)
 #endif
 
 // Uses a ternary to pad the stack by some number of words
 #if defined(__MWERKS__) && defined(BUILD_MATCHING)
 #define STACK_PAD_TERNARY(expr, n) REPEAT((expr) ? "fake" : "fake", n)
 #else
-#define STACK_PAD_TERNARY(expr, n) ((void)0)
+//#define STACK_PAD_TERNARY(expr, n) ((void)0)
 #endif
 
 // Metrowerks C/C++ language extensions
